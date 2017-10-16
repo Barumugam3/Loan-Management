@@ -1,0 +1,68 @@
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	<title>Loan Login</title>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	 <!-- Compiled and minified CSS -->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  	<!-- Compiled and minified JavaScript -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+   	</h:head>
+   	<h:body styleClass = "cyan lighten-5">
+   	 <div class="center-align" style="padding-top:5">
+   	 <h5 class="card-panel teal lighten-2" style="color:#fff" >Loan Management Systems V1.0</h5>
+   	</div>
+   	<div class = "valign-wrapper" id="login-page">
+   	<div class="container">
+   	<div class="center-align">
+   	<div class="row">
+   	<div class="col s6 offset-s3" style="padding-top:100">
+   	<div class="card">
+   	<div class="card_container">
+  <!--  	<img class="responsive-img" style="max-width:64px" src="http://upload.libertyskull.com/_sub/upload/files/burgenlandKarte.jpg" />
+   --> 	
+    
+ <h5 class="card-panel teal lighten-2" style="color:#fff" >LOGIN</h5>
+  
+   <div class="center-align">
+   	<h:form id="login-form">
+   	<p:growl id="messages"></p:growl>
+   	<div class="row">
+   	<div class="col s12 input-field">
+   	<h:inputText id="username" required="true" value="#{loginBean.user}" requiredMessage="Username is required !" />
+   	<h:outputLabel for="username" value="Username" />
+   	</div>
+   	<div class="col s12 input-field">
+   	<p:password id="password" value="#{loginBean.pass}" label="Password" required="true" requiredMessage="Password is required !" />
+   	<h:outputLabel for="password" value="Password" />
+   	</div>
+   <!-- 	<div class="col s12 input-field">
+        <p:autoComplete id="role" dropdown="true" value="#{loginBean.role}" completeMethod="#{selectRole.completeRoles}" />
+       	<h:outputLabel for="role" value="Select Role" />
+ 	</div> -->
+ 	
+   	<div class="col s12 input-field" >
+   	<h:commandLink  value="ok" action="#{loginBean.register1}" update="messages" styleClass="btn btn-large"/>
+   	</div>
+   	
+   	</div>
+   	</h:form>
+   	</div>
+   	</div>
+   	</div>
+   	</div>
+   	</div>
+   	</div>
+   	</div>
+   	</div>
+   	<script>
+   	$(document).on("ready", function(){
+   		$('#login-page').css({'height':window.innerHeight + 'px'});
+   	});
+   	</script>
+   	</h:body>
+	</html>
