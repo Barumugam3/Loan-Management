@@ -15,6 +15,7 @@ import org.primefaces.event.UnselectEvent;
 
 import com.loan.jpa.data.Employee;
 import com.loan.spring.service.EmployeeService;
+import com.loan.util.PageMode;
 
 @ManagedBean
 @SessionScoped
@@ -104,6 +105,8 @@ public class RegisterEmployee {
 	public List<Employee> fetchall() {
 		// Calling Business Service
 		List<Employee> empList = employeeService.fetchAll(employee);
+		PageModeBean pageMode = new PageModeBean();
+		pageMode.setMode(PageMode.Search);
 		// Add message
 		//FacesContext.getCurrentInstance().addMessage(null, 
 			//	new FacesMessage("The Employee "+this.employee.getUsername()+" Is Registered Successfully"));

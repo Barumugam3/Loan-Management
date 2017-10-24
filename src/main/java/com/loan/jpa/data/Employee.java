@@ -12,8 +12,12 @@ public class Employee {
 	@Id
 	@Column(name="EMPLOYEEID")
 	private long employeeId;
+	@Column(name="TITLE")
+	private String title;
 	@Column(name="FIRST_NAME")
 	private String firstName;
+	@Column(name="MIDDLE_INITIAL")
+	private String middleName;
 	@Column(name="LAST_NAME")
 	private String lastName;
 	@Column(name="BIRTHDATE")
@@ -30,7 +34,22 @@ public class Employee {
 	private String role;
 	
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
 	public String getRole() {
 		return role;
 	}
