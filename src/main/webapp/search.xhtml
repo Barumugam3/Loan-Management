@@ -1,0 +1,55 @@
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<link type="text/css" rel="stylesheet"
+	href="../loan_dev/css/custom.css" />
+	
+		<script name="jquery/jquery.js" library="primefaces"></script>
+		<link type="text/css" rel="stylesheet"
+	href="../loan_dev/css/custom.css" />
+	
+		<title>Search</title>
+	</h:head>
+	
+	 <h:body>
+   	<div >
+   	<p:outputPanel id="outputPanel">
+   	 <ui:include src="./template.xhtml" />
+    </p:outputPanel>
+   	
+	<h:form>
+		<p:growl id="message" showDetail="true" />
+		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px" url="./home.xhtml">
+		<p:panel id="Employee_Search" header="Employee Search" style="margin-bottom:20px">
+		<p:dataTable var="employee" value="#{registerEmployee.fetchall()}" selectionMode="single" selection="#{registerEmployee.selectedemployee}" rowKey="#{employee.employeeId}">
+		
+		
+		 <p:ajax event="rowSelect" listener="#{registerEmployee.onRowSelect}" />
+        <p:ajax event="rowUnselect" listener="#{registerEmployee.onRowUnselect}" />
+        	
+    <p:column headerText="Id">
+        <h:outputText value="#{employee.employeeId}" />
+    </p:column>
+ 
+    <p:column headerText="Username">
+        <h:outputText value="#{employee.username}" />
+    </p:column>
+ 
+    <p:column headerText="First Name">
+        <h:outputText value="#{employee.firstName}" />
+    </p:column>
+ 
+    <p:column headerText="Last Name">
+        <h:outputText value="#{employee.lastName}" />
+    </p:column>
+     <p:ajax event="rowEdit" listener="#{employee.onEdit}" />  
+     <p:ajax event="rowEditCancel" listener="#{employee.onCancel}"  /> 
+                    
+</p:dataTable>
+        </p:panel>
+		</p:panel>
+	</h:form></div></h:body>
+	</html>

@@ -1,0 +1,51 @@
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<script name="jquery/jquery.js" library="primefaces"></script>
+		<title>Menu</title>
+	</h:head>
+	<h:form>
+<div>
+<table align="center"> <tr><td>
+   	 <table align="right"><tr><td > <h2 style="color:blue" >Loan Management Systems V1.0</h2>
+   </td></tr></table></td><td align="right">
+    <div style="border: 0 none !important">
+   <img src="../loan_dev/images/user-login.png" width="30%" height="50%" style="background-color: #cccccc" alt="Login" />   
+   <h:outputText value = "  "></h:outputText><h:outputText value="#{loginBean.user}"></h:outputText></div>
+   </td></tr></table></div>
+   
+   <div>
+   <table><tr>
+	<td>
+	<p:menu overlay="true" trigger="triggerButton" my="left top" at="right top">
+		<p:submenu label="Admin">
+			<p:menuitem value="Employee" url="./employee.xhtml"></p:menuitem>
+			<p:menuitem value="Role" url="./role.xhtml"></p:menuitem>
+			<p:separator/>
+			<p:menuitem value="Menu Definition" url="./menu.xhtml"></p:menuitem>
+				<p:menuitem value="Search" url="./search.xhtml"></p:menuitem>
+		
+		</p:submenu>
+		</p:menu>
+		
+		<p:commandButton id="triggerButton" value="Admin"></p:commandButton></td>
+	<td>
+	<p:menu overlay="true" trigger="Customerid" my="left top" at="right top">
+		<p:submenu >
+			<p:menuitem value="Customer" url="./customer.xhtml"></p:menuitem>
+			<p:menuitem value="Add" url="./role.xhtml"></p:menuitem>
+			<p:separator/>
+			<p:menuitem value="Delete" url="./menu.xhtml"></p:menuitem>
+		</p:submenu>
+		</p:menu>
+		
+		<p:commandButton id="Customerid" value="Customer" url="./customer.xhtml"></p:commandButton></td>
+		<td align="right">	<h:form>
+		<p:commandButton value="Logout" action="#{registerEmployee.logout}"></p:commandButton>
+		</h:form></td>
+	</tr></table></div>
+</h:form>
+	</html>

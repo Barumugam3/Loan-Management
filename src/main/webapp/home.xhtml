@@ -4,31 +4,25 @@
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:p="http://primefaces.org/ui">
 	<h:head>
+		<link type="text/css" rel="stylesheet"
+	href="../loan_dev/css/custom.css" />
+	
 		<script name="jquery/jquery.js" library="primefaces"></script>
-		<title>Register Employee</title>
+		<link type="text/css" rel="stylesheet"
+	href="../loan_dev/css/custom.css" />
+	
+		<title>Dash Board</title>
 	</h:head>
-	<h:form>	<p:commandButton value="Logout" action="#{registerEmployee.logout}"></p:commandButton></h:form>
+	
+	 <h:body>
+   	<div >
+   	<p:outputPanel id="outputPanel">
+   	 <ui:include src="./template.xhtml" />
+    </p:outputPanel>
+   	
 	<h:form>
 		<p:growl id="messages"></p:growl>
-		<p:panelGrid columns="2">
-			<p:outputLabel value="First Name:"></p:outputLabel>
-			<p:inputText value="#{registerEmployee.employee.firstName}"></p:inputText>
-			<p:outputLabel value="First Name:"></p:outputLabel>
-			<p:inputText value="#{registerEmployee.employee.lastName}"></p:inputText>
-			<p:outputLabel value="Birth Date:"></p:outputLabel>
-			<p:calendar value="#{registerEmployee.employee.birthDATE}"></p:calendar>
-			<p:outputLabel value="Hire Date:"></p:outputLabel>
-			<p:calendar value="#{registerEmployee.employee.employeeHireDate}"></p:calendar>
-			<p:outputLabel value="User Name:"></p:outputLabel>
-			<p:inputText value="#{registerEmployee.employee.username}"></p:inputText>	
-			<h:outputLabel for="pwd1" value="Password: *" />
-       		<p:password id="pwd1" value="#{registerEmployee.employee.password}" match="pwd2" label="Password 1" required="true" />
- 	        <h:outputLabel for="pwd2" value="Confirm password: *" />
-        <p:password id="pwd2" value="#{registerEmployee.employee.password}" label="Password 2" required="true" />	
-         <p:outputLabel value="Role:" for="dd" />
-        <p:autoComplete id="dd" dropdown="true" value="#{selectRole.roleName}" completeMethod="#{selectRole.completeRoles}" />
- 			
-		</p:panelGrid>
-		<p:commandButton value="Register" action="#{registerEmployee.register}" update="messages"></p:commandButton>
-	</h:form>
+		<p:panel id="dashboardid" header="Dash Board" style="margin-bottom:20px">
+		</p:panel>
+	</h:form></div></h:body>
 	</html>

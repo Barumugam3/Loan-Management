@@ -1,0 +1,62 @@
+/*** override primefaces style ***/
+.ui-message-info,.ui-message-error,.ui-message-warn,.ui-message-fatal {
+	border: 0!important;
+	margin: 0!important;
+	padding: 0!important;
+}
+
+.ui-messages-error,.ui-message-error {
+	color: #D8000C;
+	background-color: #fff!important;
+}
+.ui-widget-content {
+   /*  border: 0;*/
+    background: #ffffff;
+     color: #4f4f4f; 
+}
+.ui-panel .ui-panel-content {
+/*    border: 0; */
+    background: none;
+    padding: 0.5em 1em;
+}
+
+.ui-panelgrid,.ui-panelgrid-cell {
+    /* border-width: 1px; */
+    /* border-style: solid; */
+    /* border-color: inherit; */
+    padding: 4px 10px;
+}
+
+ui-panelgrid, .ui-widget {
+	 /*border-width: 0px; */
+    /* border-style: solid; */
+    /* border-color: inherit; */
+    padding: 4px 10px;
+}
+.table {
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    font-variant: normal normal;
+}
+.table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: none;
+}
+
+.table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: none;
+    border-top-color: none;
+    border-right-color: none;
+    border-bottom-color: none;
+    border-left-color: none;
+}

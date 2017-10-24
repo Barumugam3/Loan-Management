@@ -1,0 +1,49 @@
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<link type="text/css" rel="stylesheet"
+	href="../loan_dev/css/custom.css" />
+	
+		<script name="jquery/jquery.js" library="primefaces"></script>
+		<link type="text/css" rel="stylesheet"
+	href="../loan_dev/css/custom.css" />
+	
+		<title>Register Employee</title>
+	</h:head>
+	
+	 <h:body>
+   	<div >
+   	<p:outputPanel id="outputPanel">
+   	 <ui:include src="./template.xhtml" />
+    </p:outputPanel>
+   	
+	<h:form>
+		<p:growl id="messages"></p:growl>
+		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px" url="./home.xhtml">
+		<p:panel id="personalinfo" header="Personal Info" style="margin-bottom:20px">
+        	<p:panelGrid columns="2"  style="margin-bottom:20px">
+			<p:outputLabel value="First Name:"></p:outputLabel>
+			<p:inputText value="#{registerEmployee.employee.firstName}"></p:inputText>
+			<p:outputLabel value="Last Name:"></p:outputLabel>
+			<p:inputText value="#{registerEmployee.employee.lastName}"></p:inputText>
+			<p:outputLabel value="Birth Date:"></p:outputLabel>
+			<p:calendar value="#{registerEmployee.employee.birthDATE}"></p:calendar>
+			<p:outputLabel value="Hire Date:"></p:outputLabel>
+			<p:calendar value="#{registerEmployee.employee.employeeHireDate}"></p:calendar>
+			<p:outputLabel value="User Name:"></p:outputLabel>
+			<p:inputText value="#{registerEmployee.employee.username}"></p:inputText>	
+			<h:outputLabel for="pwd1" value="Password: *" />
+       		<p:password id="pwd1" value="#{registerEmployee.employee.password}" match="pwd2" label="Password 1" required="true" />
+ 	        <h:outputLabel for="pwd2" value="Confirm password: *" />
+        <p:password id="pwd2" value="#{registerEmployee.employee.password}" label="Password 2" required="true" />	
+         <p:outputLabel value="Role:" for="dd" />
+        <p:autoComplete id="dd" dropdown="true" value="#{selectRole.roleName}" completeMethod="#{selectRole.completeRoles}" />
+ 				<div align="center"><p:commandButton value="Register" action="#{registerEmployee.register}" update="messages"></p:commandButton>
+	</div>
+		</p:panelGrid></p:panel>
+		</p:panel>
+	</h:form></div></h:body>
+	</html>
