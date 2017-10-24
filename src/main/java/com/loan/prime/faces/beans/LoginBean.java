@@ -21,6 +21,10 @@ public class LoginBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4913397860493275891L;
+	public static final String HOME_PAGE_REDIRECT = "/secured/home.xhtml?faces-redirect=true";
+    public static final String LOGOUT_PAGE_REDIRECT = "/secured/index.xhtml?faces-redirect=true";
+
+	
 	@ManagedProperty("#{loginService}")
 	private LoginService loginService;
 	private Employee login = new Employee();
@@ -80,10 +84,12 @@ public class LoginBean implements Serializable {
 		String password = pass;
 		login.setUsername(user);
 		login.setPassword(pass);
-		 loginService.register1(login);
-		
-		System.out.println("Log Details:"+username+"::"+password+"::"+role);
-		boolean valid = validate(this.login.getUsername(), this.login.getPassword(), username, password);
+		loginService.register1(login);
+
+		System.out.println("Log Details:" + username + "::" + password + "::"
+				+ role);
+		boolean valid = validate(this.login.getUsername(),
+				this.login.getPassword(), username, password);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", login.getUsername().trim());
@@ -95,7 +101,7 @@ public class LoginBean implements Serializable {
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
 							"Incorrect Username and Passowrd",
 							"Please enter correct username and Password"));
-			return "index";
+			return "";
 		}
 	}
 	
@@ -107,10 +113,23 @@ public class LoginBean implements Serializable {
 		return false;
 	}
 }
+	
+	public boolean isLoggedIn() {
+        return login != null;
+    }
+	
+	public String isLoggedInForwardHome() {
+        if (isLoggedIn()) {
+            return HOME_PAGE_REDIRECT;
+        }
+
+        return null;
+    }
+	
 	//logout event, invalidate session
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "login";
+		return "index";
 	}
 }
