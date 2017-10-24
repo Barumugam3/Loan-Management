@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,17 +32,13 @@ public class RoleService {
 	}
 	private List<Role> roles;
     
-    @javax.annotation.PostConstruct
-    public void init() {
-    	roles = new ArrayList<Role>();
-    	roles.add(new Role(0, "Admin", "Admin Role desc","ACTIVE"));
-    	roles.add(new Role(0, "Employee", "Employee Role desc","ACTIVE"));
-    	roles.add(new Role(0, "Customer", "Customer Role desc","ACTIVE"));
-    	roles.add(new Role(0, "SuperAdmin", "SuperAdmin Role desc","ACTIVE"));;
-    }
-    
-    public List<Role> getRoles() {
-        return roles;
+    @SuppressWarnings("unchecked")
+	public List<Object> getRoles() {    	
+
+		String hql = "select role from Role";
+		Query  query = em.createQuery(hql);
+		List<Object> roles = query.getResultList();
+	    return roles;
     } 
    
 	
