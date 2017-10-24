@@ -16,16 +16,20 @@ public class Role {
 	private String role;
 	@Column (name="DESCRIPTION")
 	private String description;
-	@Column (name="STATUS")
-	private String status;
+	@Column (name="ROLESTATUS")
+	private String rolestatus;
 	@Column (name="TRANSACTION_ID")
 	private int transaction_Id;	
 	
-	public Role(long roleId, String role, String description, String status) {
+	public Role(String role) {
+        this.role = role;
+    }
+	
+	public Role(long roleId, String role, String description, String rolestatus) {
         this.roleId = roleId;
         this.role = role;
         this.description = description;
-        this.status = status;
+        this.rolestatus = rolestatus;
     }
 	
 	
@@ -47,11 +51,11 @@ public class Role {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getStatus() {
-		return status;
+	public String getRolestatus() {
+		return rolestatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setRolestatus(String rolestatus) {
+		this.rolestatus = rolestatus;
 	}
 	public int getTransaction_Id() {
 		return transaction_Id;

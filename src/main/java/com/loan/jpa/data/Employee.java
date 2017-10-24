@@ -26,17 +26,20 @@ public class Employee {
 	private String username;
 	@Column(name="PASSWORD")
 	private String password;
+	@Column(name="ROLE")
+	private String role;
 	
-	private String findUserDetails; 
 	
-	public String getFindUserDetails() {
-		return findUserDetails;
+	
+	public String getRole() {
+		return role;
 	}
 
-	public void setFindUserDetails(String findUserDetails) {
-		this.findUserDetails = findUserDetails;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
+	
 	public String getFirstName() {
 		return firstName;
 	}
