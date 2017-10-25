@@ -26,6 +26,15 @@ public class RegisterEmployee {
 
 	private Employee employee = new Employee();
 	public String logout;
+	public int getMode() {
+		return mode;
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
+	}
+
+	private int mode;
 	public List<Employee> fetchall;
 	private List<Employee> selectedemployees;
      
@@ -34,6 +43,10 @@ public class RegisterEmployee {
 	public void onRowSelect(SelectEvent event) {
 	     FacesMessage msg = new FacesMessage("Employee Selected: "+((Employee) event.getObject()).getEmployeeId());
         FacesContext.getCurrentInstance().addMessage("messgae", msg);
+        long empid = ((Employee) event.getObject()).getEmployeeId();
+        
+        employeeService.fetchById(empid);
+        setMode(3);        
     }
  
     public void onRowUnselect(UnselectEvent event) {

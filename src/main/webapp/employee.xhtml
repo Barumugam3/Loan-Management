@@ -10,7 +10,11 @@
 		<script name="jquery/jquery.js" library="primefaces"></script>
 		<link type="text/css" rel="stylesheet"
 	href="../loan_dev/css/custom.css" />
-	
+	<style>
+       .ui-panel-content, .ui-widget-content{
+           padding:1px;
+       }
+  </style>
 		<title>Employee</title>
 	</h:head>
 	
@@ -52,7 +56,7 @@
 	</h:form>
    	 
    	   	
-	<h:form rendered="#{pageModeBean.mode eq 0 or param.page eq 0}">
+	<h:form rendered="#{pageModeBean.mode eq 0 or param.page eq 0 or registerEmployee.mode eq 3}">
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
@@ -103,15 +107,51 @@
    <p:column colspan="2"><p:calendar style="width:180px" value="#{registerEmployee.employee.employeeHireDate}"></p:calendar> </p:column>
    </p:row>
    
-   <p:row> 
-   <p:column colspan="2"> </p:column>
-   <p:column colspan="2"> </p:column>
+    <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
+   <p:column colspan="2"><p:inputText value="#{registerEmployee.employee.gender}" style="width:180px"></p:inputText> </p:column>
    </p:row>
-  
+   
+    <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
+   <p:column colspan="2"><p:inputText value="#{registerEmployee.employee.ssn}" style="width:180px"></p:inputText> </p:column>
+   </p:row>
+   
+   
  
 </p:panelGrid>      		
 		
-		<p:panelGrid columns="2"  style="margin-bottom:123px;">
+		<p:panelGrid columns="2"  style="margin-bottom:45px;margin-left:20px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="2">Address</p:column>
+            
+        </p:row>
+        </f:facet>
+        	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel>
+			<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel>
+       		<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+ 	        <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel>
+       		<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+       		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel>
+       		 <p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+       		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel>
+       		 <p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+       		 
+       		 
+             
+        		
+        	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel>
+			<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel>
+       		<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>
+       		
+       		
+ 	               				 	
+         </p:panelGrid>
+		
+		<p:panelGrid columns="2"  style="margin-bottom:190px;margin-left:20px">
 		<f:facet name="header">
         <p:row>
             <p:column colspan="2">Credentials</p:column>
@@ -126,9 +166,7 @@
         <p:password id="pwd2" value="#{registerEmployee.employee.password}" label="Password 2" required="true" style="width:180px"/>	
          </p:panelGrid>
 	
-	
-	
-		<p:panelGrid columns="2"  style="margin-bottom:195px">
+	<p:panelGrid columns="2"  style="margin-top:0px;margin:left:20px">
 		<f:facet name="header">
         <p:row>
             <p:column colspan="2">Other Info</p:column>
@@ -136,8 +174,19 @@
         </p:row>
         </f:facet>
         	 <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Role:" for="dd" />
-        <p:autoComplete id="dd" width="20px" dropdown="true" value="#{selectRole.roleName}" completeMethod="#{selectRole.completeRoles}" />
+        <p:autoComplete id="dd" width="20px" value="#{selectRole.roleName}" completeMethod="#{selectRole.completeRoles}" />
  				</p:panelGrid>
+	
+		<p:panelGrid columns="2"  style="margin-bottom:45px;margin-left:20px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="2">Branch</p:column>
+            
+        </p:row>
+        
+        </f:facet>
+        <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Branch:"></p:outputLabel>
+			<p:inputText value="" style="width:180px" ></p:inputText>	</p:panelGrid>
  				
 	</h:panelGrid>
 	</p:panel>

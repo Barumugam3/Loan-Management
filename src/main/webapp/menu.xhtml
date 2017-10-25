@@ -1,0 +1,47 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	<title>Menu</title>
+</h:head>
+
+<h:body>
+
+	<div>
+		<p:outputPanel id="outputPanel">
+			<ui:include src="./template.xhtml" />
+		</p:outputPanel>
+
+			<div align="center">
+		<h:form >
+		
+			<p:growl id="messages"></p:growl>
+			<p:panel id="menuid" header="Menu"
+				style="margin-bottom:20px;border-style:none !important;text-align: center">
+
+				<h:panelGrid  style="border-style:none !important">
+
+			<p:panelGrid style="margin-top:0px">
+    <f:facet name="header">
+        <p:row>
+            <p:column colspan="4">Menu</p:column>
+        </p:row></f:facet>
+						<p:row>
+						  <p:column colspan="2"><p:outputLabel value="Menu Name"></p:outputLabel> </p:column>
+						  <p:column colspan="2"><p:inputText value="#{menubarBean.menu.menuname}"></p:inputText> </p:column>
+						</p:row>
+					</p:panelGrid>
+				</h:panelGrid>
+			</p:panel>
+			
+				<p:commandButton value="Save" action="#{menubarBean.registermenu}"
+					update="messages"></p:commandButton>
+			
+		</h:form></div>
+	</div>
+</h:body>
+</html>

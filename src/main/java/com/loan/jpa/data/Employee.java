@@ -32,8 +32,27 @@ public class Employee {
 	private String password;
 	@Column(name="ROLE")
 	private String role;
+	@Column(name="GENDER")
+	private String gender; 
+	@Column(name="SSN")
+	private String ssn; 
 	
 	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
 	public String getTitle() {
 		return title;
 	}

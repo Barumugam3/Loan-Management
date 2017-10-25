@@ -1,0 +1,61 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	<title>Menu Items</title>
+</h:head>
+
+<h:body>
+
+	<div>
+		<p:outputPanel id="outputPanel">
+			<ui:include src="./template.xhtml" />
+		</p:outputPanel>
+
+		<h:form>
+			<p:growl id="messages"></p:growl>
+			<p:panel id="menuid" header="Menu Items"
+				style="margin-bottom:20px;border-style:none !important;text-align: center">
+
+				<h:panelGrid columns="1" style="border-style:none !important">
+
+					<p:panelGrid style="margin-top:0px">
+						<f:facet name="header">
+							<p:row>
+								<p:column colspan="7">Menu Items</p:column>
+							</p:row>
+
+						</f:facet>
+						<p:row>
+							<p:outputLabel value="Label"></p:outputLabel>
+							<p:inputText value="#{menubarBean.menuitems.label}"></p:inputText>
+						</p:row>						
+						<p:row>
+							<p:outputLabel value="Url"></p:outputLabel>
+							<p:inputText value="#{menubarBean.menuitems.url}"></p:inputText>
+						</p:row>
+						<p:row>
+							<p:outputLabel value="Tool Tip"></p:outputLabel>
+							<p:inputText value="#{menubarBean.menuitems.tooltip}"></p:inputText>
+						</p:row>
+						<p:row>
+							<p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Parent menu" for="dd" />
+       						 <p:autoComplete id="dd" width="20px" value="#{menubarBean.menuitems.parent_menu}" completeMethod="#{selectRole.completeRoles}" />
+							
+						</p:row>
+						
+					</p:panelGrid>
+				</h:panelGrid>
+			</p:panel>
+			<div align="center">
+				<p:commandButton value="Save" action="#{menubarBean.registermenu}"
+					update="messages"></p:commandButton>
+			</div>
+		</h:form>
+	</div>
+</h:body>
+</html>

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Component;
@@ -58,6 +59,19 @@ public class EmployeeService {
 			      System.out.println("EID : " + e.getFirstName() + " Ename : " + e.getLastName());
 			   }
 		return empList;
+	}
+	
+	@Transactional
+	public Employee fetchById(long empid){
+		 CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		   CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
+		   Root<Employee> from = criteriaQuery.from(Employee.class);
+		   criteriaQuery.where(from.get("employeeid").in(empid));
+		   CriteriaQuery<Object> select = criteriaQuery.select(from);
+		   TypedQuery<Object> typedQuery = em.createQuery(select);
+		   Object resultlist = typedQuery.getSingleResult();
+		   Employee e = (Employee) resultlist;
+		   return e;
 		   
 
 
