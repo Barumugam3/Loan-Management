@@ -13,6 +13,7 @@ import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
+import com.loan.jpa.data.Address;
 import com.loan.jpa.data.Employee;
 import com.loan.spring.service.EmployeeService;
 import com.loan.util.PageMode;
@@ -25,7 +26,22 @@ public class RegisterEmployee {
 	private EmployeeService employeeService;
 
 	private Employee employee = new Employee();
+	private Address address = new Address();
 	public String logout;
+	private int mode;
+	public List<Employee> fetchall;
+	private List<Employee> selectedemployees;     
+	private Employee selectedemployee;
+    
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	public int getMode() {
 		return mode;
 	}
@@ -34,12 +50,7 @@ public class RegisterEmployee {
 		this.mode = mode;
 	}
 
-	private int mode;
-	public List<Employee> fetchall;
-	private List<Employee> selectedemployees;
-     
-	private Employee selectedemployee;
-    
+	
 	public void onRowSelect(SelectEvent event) {
 	     FacesMessage msg = new FacesMessage("Employee Selected: "+((Employee) event.getObject()).getEmployeeId());
         FacesContext.getCurrentInstance().addMessage("messgae", msg);
@@ -108,7 +119,15 @@ public class RegisterEmployee {
 
 	public String register() {
 		// Calling Business Service
-		employeeService.register(employee);
+		boolean addressTrue= true;
+		String addressid = employeeService.nextaddressid();
+		address.setAddressid(Integer.valueOf(addressid));
+		addressTrue = employeeService.registeraddress(address);
+		if(addressTrue) {
+			employee.setAddressid(Integer.valueOf(addressid));
+			employeeService.register(employee);
+		}
+	
 		// Add message
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Registered Successfully"));

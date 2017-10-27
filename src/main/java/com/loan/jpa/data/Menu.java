@@ -12,7 +12,15 @@ public class Menu {
 	private long menuid;
 	@Column(name="MENUNAME")
 	private String menuname;
+	@Column(name="STATUS")
+	private String status;
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public long getMenuid() {
 		return menuid;
 	}

@@ -36,8 +36,18 @@ public class Employee {
 	private String gender; 
 	@Column(name="SSN")
 	private String ssn; 
+	@Column(name="ADDRESSID", nullable = true)
+	private Integer addressid; 
 	
 	
+	public Integer getAddressid() {
+		return addressid;
+	}
+
+	public void setAddressid(Integer addressid) {
+		this.addressid = addressid;
+	}
+
 	public String getGender() {
 		return gender;
 	}

@@ -25,6 +25,7 @@
     </p:outputPanel>
    	 
    	 <h:form rendered="#{pageModeBean.mode eq 3 or param.page eq 3}" >
+   	 
 		<p:growl id="message" showDetail="true" />
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
 		<p:dataTable var="employee" value="#{registerEmployee.fetchall()}" selectionMode="single" selection="#{registerEmployee.selectedemployee}" rowKey="#{employee.employeeId}">
@@ -129,24 +130,19 @@
         </p:row>
         </f:facet>
         	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel>
-			<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+			<p:inputText value="#{registerEmployee.address.street1}" style="width:180px" ></p:inputText>	
 			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel>
-       		<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+       		<p:inputText value="#{registerEmployee.address.street2}" style="width:180px" ></p:inputText>	
  	        <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel>
-       		<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+       		<p:inputText value="#{registerEmployee.address.city}" style="width:180px" ></p:inputText>	
        		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel>
-       		 <p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+       		 <p:inputText value="#{registerEmployee.address.state}" style="width:180px" ></p:inputText>	
        		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel>
-       		 <p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
-       		 
-       		 
-             
-        		
+       		 <p:inputText value="#{registerEmployee.address.zip}" style="width:180px" ></p:inputText>	
         	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel>
-			<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	
+			<p:inputText value="#{registerEmployee.address.phone}" style="width:180px" ></p:inputText>	
 			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel>
-       		<p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>
-       		
+       		<p:inputText value="#{registerEmployee.address.email}" style="width:180px" ></p:inputText>
        		
  	               				 	
          </p:panelGrid>

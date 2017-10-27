@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.loan.jpa.data.Address;
 import com.loan.jpa.data.Employee;
 
 @Component
@@ -33,6 +35,32 @@ public class EmployeeService {
 	public void register(Employee emp) {
 		// Save employee
 		this.em.persist(emp);
+	}
+	
+	@SuppressWarnings("finally")
+	@Transactional
+	public String nextaddressid() {
+		// Select Address ID
+		try{
+			String hql = "Select max(addressid)+1 from address";
+			Query  query = em.createQuery(hql);
+			Object addressid = query.executeUpdate();
+			return addressid.toString();
+		
+		}finally {
+			return "error";
+		}		
+	}
+	
+	@SuppressWarnings("finally")
+	@Transactional
+	public boolean registeraddress(Address address) {
+		// Save employee
+		try{
+			this.em.persist(address);
+		}finally {
+			return false;
+		}		
 	}
 	
 	@Transactional
@@ -56,7 +84,6 @@ public class EmployeeService {
 		   for(Object o:resultlist) {
 			      Employee e = (Employee)o;
 			      empList.add(e);
-			      System.out.println("EID : " + e.getFirstName() + " Ename : " + e.getLastName());
 			   }
 		return empList;
 	}
