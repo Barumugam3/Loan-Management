@@ -28,7 +28,17 @@
    	 
 		<p:growl id="message" showDetail="true" />
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
-		<p:dataTable var="employee" value="#{registerEmployee.fetchall()}" selectionMode="single" selection="#{registerEmployee.selectedemployee}" rowKey="#{employee.employeeId}">
+		<f:facet name="header"><h:panelGrid columns="5">
+		 <p:column style="width:180px">   </p:column>
+		  <p:column style="width:180px">   </p:column>
+		   <p:column>  <h:outputText value="Employee" />  </p:column>
+		    <p:column style="width:180px">   </p:column>
+		     <p:column > <h:commandButton id="emp" value="Add" url="./employee.xhtml?page=0"></h:commandButton>  </p:column>
+		
+		
+		</h:panelGrid>
+    </f:facet>
+		<p:dataTable var="employee" value="#{registerEmployee.fetchall()}" selectionMode="single" selection="#{registerEmployee.employee}" rowKey="#{employee.employeeId}">
 		
 		
 		 <p:ajax event="rowSelect" listener="#{registerEmployee.onRowSelect}" />
@@ -186,7 +196,7 @@
 	
 	   	<!-- Create and Edit--> 
    	   	
-	<h:form rendered="#{param.page !=2 and pageModeBean.mode eq 3 or param.page eq 0 }">
+	<h:form rendered="#{param.page !=2 and pageModeBean.mode eq 3 or param.page eq 0 or param.page eq null }">
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">

@@ -54,12 +54,11 @@ public class RegisterEmployee {
 
 	
 	public void onRowSelect(SelectEvent event) {
-	     FacesMessage msg = new FacesMessage("Employee Selected: "+((Employee) event.getObject()).getEmployeeId());
-        FacesContext.getCurrentInstance().addMessage("messgae", msg);
-        long empid = ((Employee) event.getObject()).getEmployeeId();
-        
-        employeeService.fetchById(empid);
-        setMode(3);        
+		long empid = ((Employee) event.getObject()).getEmployeeId();
+		employee = ((Employee) event.getObject());
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage("Selected employee "+this.employee.getFirstName()+"  and Id:"+empid));
+		setMode(1);
     }
 	
     public void onRowUnselect(UnselectEvent event) {
