@@ -24,7 +24,7 @@
    	 <ui:include src="./template.xhtml" />
     </p:outputPanel>
    	 
-   	 <h:form rendered="#{pageModeBean.mode eq 3 or param.page eq 3}" >
+   	 <h:form rendered="#{pageModeBean.mode eq 2 or param.page eq 2}" >
    	 
 		<p:growl id="message" showDetail="true" />
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
@@ -55,9 +55,138 @@
 </p:dataTable>
 		</p:panel>
 	</h:form>
-   	 
+   	 <!-- Browse Mode -->
    	   	
-	<h:form rendered="#{pageModeBean.mode eq 0 or param.page eq 0 or registerEmployee.mode eq 3}">
+	<h:form rendered="#{pageModeBean.mode eq 1 or param.page eq 1}">
+		<p:growl id="messages"></p:growl>
+		
+		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
+		
+		
+		  <h:panelGrid columns="3" style="border-style:none !important">
+		
+<p:panelGrid style="margin-top:0px">
+    <f:facet name="header">
+        <p:row>
+            <p:column colspan="7">Personal Info</p:column>
+        </p:row>
+       
+    </f:facet>
+  <p:row>
+            <p:column colspan="2"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Title"></p:outputLabel></p:column>
+            <p:column colspan="2"> <h:outputText value="#{registerEmployee.employee.title}" /></p:column>
+        	
+          
+         
+   </p:row>
+   <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.firstName}"  style="width:180px" ></h:outputText> </p:column>
+   </p:row>
+   
+   <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
+   <p:column colspan="2"> <h:outputText value="#{registerEmployee.employee.middleName}" style="width:180px" ></h:outputText></p:column>
+   </p:row>
+   
+   <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.lastName}" style="width:180px"></h:outputText> </p:column>
+   </p:row>
+   
+   <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.birthDATE}" style="width:180px" /> </p:column>
+   </p:row>
+   
+   <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.employeeHireDate}" style="width:180px" />  </p:column>
+   </p:row>
+   
+    <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.gender}" style="width:180px"></h:outputText> </p:column>
+   </p:row>
+   
+    <p:row> 
+   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.ssn}" style="width:180px"></h:outputText> </p:column>
+   </p:row>
+   
+   
+ 
+</p:panelGrid>      		
+		
+		<p:panelGrid columns="2"  style="margin-bottom:45px;margin-left:20px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="2">Address</p:column>
+            
+        </p:row>
+        </f:facet>
+        	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel>
+			<h:outputText value="#{registerEmployee.address.street1}" style="width:180px" ></h:outputText>	
+			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel>
+       		<h:outputText value="#{registerEmployee.address.street2}" style="width:180px" ></h:outputText>	
+ 	        <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel>
+       		<h:outputText value="#{registerEmployee.address.city}" style="width:180px" ></h:outputText>	
+       		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel>
+       		 <h:outputText value="#{registerEmployee.address.state}" style="width:180px" ></h:outputText>	
+       		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel>
+       		 <h:outputText value="#{registerEmployee.address.zip}" style="width:180px" ></h:outputText>	
+        	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel>
+			<h:outputText value="#{registerEmployee.address.phone}" style="width:180px" ></h:outputText>	
+			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel>
+       		<h:outputText value="#{registerEmployee.address.email}" style="width:180px" ></h:outputText>
+       		
+ 	               				 	
+         </p:panelGrid>
+		
+		<p:panelGrid columns="2"  style="margin-bottom:190px;margin-left:20px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="2">Credentials</p:column>
+            
+        </p:row>
+        </f:facet>
+        	<p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="User Name:"></p:outputLabel>
+			<h:outputText value="#{registerEmployee.employee.username}" style="width:180px" ></h:outputText>	
+			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd1" value="Password: *" />
+       		<h:outputText id="pwd1" value="#{registerEmployee.employee.password}" match="pwd2" label="Password 1" required="true" style="width:180px" />
+         </p:panelGrid>
+	
+	<p:panelGrid columns="2"  style="margin-top:0px;margin:left:20px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="2">Other Info</p:column>
+            
+        </p:row>
+        </f:facet>
+        	 <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Role:" for="dd" />        	 
+       		<h:outputText value="#{selectRole.roleName}" style="width:180px" ></h:outputText>
+ 				</p:panelGrid>
+	
+		<p:panelGrid columns="2"  style="margin-bottom:45px;margin-left:20px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="2">Branch</p:column>
+            
+        </p:row>
+        
+        </f:facet>
+        <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Branch:"></p:outputLabel>
+			<h:outputText value="New York" style="width:180px" ></h:outputText>	</p:panelGrid>
+ 				
+	</h:panelGrid>
+	</p:panel>
+<div align="center"><p:commandButton value="Save" action="#{registerEmployee.edit}" update="messages"></p:commandButton>
+	</div>
+	</h:form>
+	
+	   	<!-- Create and Edit--> 
+   	   	
+	<h:form rendered="#{param.page !=2 and pageModeBean.mode eq 3 or param.page eq 0 }">
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
@@ -182,13 +311,23 @@
         
         </f:facet>
         <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Branch:"></p:outputLabel>
-			<p:inputText value="" style="width:180px" ></p:inputText>	</p:panelGrid>
+			<p:inputText value="New York" style="width:180px" ></p:inputText>	</p:panelGrid>
  				
 	</h:panelGrid>
 	</p:panel>
-<div align="center"><p:commandButton value="Save" action="#{registerEmployee.register}" update="messages"></p:commandButton>
+	
+	
+<div align="center">
+<p:outputPanel rendered="#{pageModeBean.mode eq 0}">   	    	 
+<p:commandButton value="Save" action="#{registerEmployee.register}" update="messages"></p:commandButton>
+  </p:outputPanel>
+  <p:outputPanel rendered="#{pageModeBean.mode eq 3}">   	    	 
+<p:commandButton value="Update" action="#{registerEmployee.update}" update="messages"></p:commandButton>
+  </p:outputPanel>
+
 	</div>
 	</h:form>
+	
 	
 	</div></h:body>
 	</html>

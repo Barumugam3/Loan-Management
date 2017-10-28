@@ -28,4 +28,12 @@
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
 		<param-value>client</param-value>
 	</context-param>	
+	<session-config> 
+  		 <session-timeout>45</session-timeout> 
+	</session-config>
+	<error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    	<location>/exception/sessionexpired.xhtml</location>
+	</error-page>
+
 </web-app>

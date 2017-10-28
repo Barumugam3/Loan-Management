@@ -2,14 +2,20 @@ package com.loan.jpa.data;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
 public class Employee {
 	@Id
+	@GeneratedValue
 	@Column(name="EMPLOYEEID")
 	private long employeeId;
 	@Column(name="TITLE")
@@ -36,33 +42,21 @@ public class Employee {
 	private String gender; 
 	@Column(name="SSN")
 	private String ssn; 
-	@Column(name="ADDRESSID", nullable = true)
-	private Integer addressid; 
+	 
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="ADDRESSID")
+	 private Address address;
 	
-	public Integer getAddressid() {
-		return addressid;
+		
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddressid(Integer addressid) {
-		this.addressid = addressid;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getSsn() {
-		return ssn;
-	}
-
-	public void setSsn(String ssn) {
-		this.ssn = ssn;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -144,5 +138,21 @@ public class Employee {
 
 	public void setEmployeeHireDate(Date employeeHireDate) {
 		this.employeeHireDate = employeeHireDate;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
 	}
 }

@@ -37,32 +37,6 @@ public class EmployeeService {
 		this.em.persist(emp);
 	}
 	
-	@SuppressWarnings("finally")
-	@Transactional
-	public String nextaddressid() {
-		// Select Address ID
-		try{
-			String hql = "Select max(addressid)+1 from address";
-			Query  query = em.createQuery(hql);
-			Object addressid = query.executeUpdate();
-			return addressid.toString();
-		
-		}finally {
-			return "error";
-		}		
-	}
-	
-	@SuppressWarnings("finally")
-	@Transactional
-	public boolean registeraddress(Address address) {
-		// Save employee
-		try{
-			this.em.persist(address);
-		}finally {
-			return false;
-		}		
-	}
-	
 	@Transactional
 	public void register1(Employee emp) {
 		//emp.setUsername("Admin");

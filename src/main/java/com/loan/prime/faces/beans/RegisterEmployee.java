@@ -32,6 +32,8 @@ public class RegisterEmployee {
 	public List<Employee> fetchall;
 	private List<Employee> selectedemployees;     
 	private Employee selectedemployee;
+
+	PageModeBean pageMode = new PageModeBean();
     
 	
 	public Address getAddress() {
@@ -59,7 +61,7 @@ public class RegisterEmployee {
         employeeService.fetchById(empid);
         setMode(3);        
     }
- 
+	
     public void onRowUnselect(UnselectEvent event) {
         FacesMessage msg = new FacesMessage("Employee Unselected: "+((Employee) event.getObject()).getEmployeeId());
         FacesContext.getCurrentInstance().addMessage("messgae", msg);
@@ -117,38 +119,57 @@ public class RegisterEmployee {
 		this.employee = employee;
 	}
 
+	public String selectedemployee(SelectEvent event) {
+		long empid = ((Employee) event.getObject()).getEmployeeId();
+		employee = ((Employee) event.getObject());
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage("Selected employee "+this.employee.getFirstName()+"  and Id:"+empid));
+		return "./employee.xhtml?page=1";
+	}
+ 
+	
 	public String register() {
 		// Calling Business Service
-		boolean addressTrue= true;
-		String addressid = employeeService.nextaddressid();
-		address.setAddressid(Integer.valueOf(addressid));
-		addressTrue = employeeService.registeraddress(address);
-		if(addressTrue) {
-			employee.setAddressid(Integer.valueOf(addressid));
+			employee.setAddress(address);
 			employeeService.register(employee);
-		}
-	
+			pageMode.setMode(PageMode.Browse);
 		// Add message
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Registered Successfully"));
+		return "./employee.xhtml?page=1";
+	}
+	
+	public String edit() {
+		// Calling Business Service
+		//	employee.setAddress(address);
+		//	employeeService.register(employee);
+			pageMode.setMode(PageMode.Edit);
+		// Add message
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Edited Successfully"));
 		return "";
 	}
+	
+	public String update() {
+		// Calling Business Service
+		//	employee.setAddress(address);
+		//	employeeService.register(employee);
+			pageMode.setMode(PageMode.Edit);
+		// Add message
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Updated Successfully"));
+		return "";
+	}
+	
 	
 	public List<Employee> fetchall() {
 		// Calling Business Service
 		List<Employee> empList = employeeService.fetchAll(employee);
-		PageModeBean pageMode = new PageModeBean();
 		pageMode.setMode(PageMode.Search);
 		// Add message
 		//FacesContext.getCurrentInstance().addMessage(null, 
 			//	new FacesMessage("The Employee "+this.employee.getUsername()+" Is Registered Successfully"));
 		return empList;
-	}
-	
-	public void selectedemployee(){
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Registered Successfully"));
-	
 	}
 	
 	//logout event, invalidate session
