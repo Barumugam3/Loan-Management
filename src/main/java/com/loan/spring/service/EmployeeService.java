@@ -32,18 +32,17 @@ public class EmployeeService {
 	}
 
 	@Transactional
-	public void register(Employee emp) {
-		// Save employee
-		this.em.persist(emp);
+	public void update(Employee emp) {
+		// Update employee
+		
+		this.em.merge(emp);
 	}
 	
 	@Transactional
-	public void register1(Employee emp) {
-		//emp.setUsername("Admin");
-		//emp.setPassword("Admin123");
-		//return (Employee) em.createQuery("SELECT username,password,role FROM EMPLOYEE where username="+username).getResultList();
-	this.em.createQuery("SELECT username,password,role FROM EMPLOYEE where username="+emp.getUsername()).getSingleResult();
-	}
+	public void register(Employee emp) {
+		// Save employee
+		this.em.persist(emp);
+	}	
 	
 	@Transactional
 	public List<Employee> fetchAll(Employee emp){

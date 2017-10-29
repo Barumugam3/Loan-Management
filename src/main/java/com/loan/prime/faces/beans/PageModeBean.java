@@ -9,7 +9,7 @@ public class PageModeBean {
 	public String navigatePage1(String page, String mode){
 		
 		if(page.equalsIgnoreCase("employee")){
-			page = "./employee.xhtml?page="+mode;
+			page = "./employee.xhtml?faces-redirect=true&page="+mode;
 		}
 		
 		return page;

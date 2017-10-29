@@ -34,12 +34,21 @@ public class RegisterEmployee {
 	private Employee selectedemployee;
  
 	PageModeBean pageMode = new PageModeBean();
+	private String update;
     
 	public String navigatePage1(String page, String mode){	
 		return pageMode.navigatePage1(page,mode);
 		
 	}
 	
+	public String getUpdate() {
+		return update;
+	}
+
+
+	public void setUpdate(String update) {
+		this.update = update;
+	} 
 	
 	public Address getAddress() {
 		return address;
@@ -123,46 +132,44 @@ public class RegisterEmployee {
 		this.employee = employee;
 	}
 
-	public String selectedRow(Employee e) { 
-		long empid = employee.getEmployeeId();
+	public String selectedemployee(Employee e) { 
+		long empid = e.getEmployeeId();
 		selectedemployee = e;
 		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("Selected employee "+this.employee.getFirstName()+"  and Id:"+empid));
+				new FacesMessage("Selected employee "+this.selectedemployee.getFirstName()+"  and Id:"+empid));
+		setMode(1);
 		return navigatePage1("employee","1");
 	}
  
 	
 	public String register() {
 		// Calling Business Service
-			employee.setAddress(address);
 			employeeService.register(employee);
 			pageMode.setMode(PageMode.Browse);
 		// Add message
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Registered Successfully"));
-		return "./employee.xhtml?page=1";
+		return navigatePage1("employee","1");
 	}
 	
 	public String edit() {
 		// Calling Business Service
-		//	employee.setAddress(address);
-		//	employeeService.register(employee);
+			employee = selectedemployee;
 			pageMode.setMode(PageMode.Edit);
 		// Add message
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Edited Successfully"));
-		return "";
+		return navigatePage1("employee","3");
 	}
 	
 	public String update() {
 		// Calling Business Service
-		//	employee.setAddress(address);
-		//	employeeService.register(employee);
-			pageMode.setMode(PageMode.Edit);
+			employeeService.update(employee);
+			pageMode.setMode(PageMode.Browse);
 		// Add message
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Updated Successfully"));
-		return "";
+		return navigatePage1("employee","1");
 	}
 	
 	
