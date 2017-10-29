@@ -32,9 +32,14 @@ public class RegisterEmployee {
 	public List<Employee> fetchall;
 	private List<Employee> selectedemployees;     
 	private Employee selectedemployee;
-
+ 
 	PageModeBean pageMode = new PageModeBean();
     
+	public String navigatePage1(String page, String mode){	
+		return pageMode.navigatePage1(page,mode);
+		
+	}
+	
 	
 	public Address getAddress() {
 		return address;
@@ -118,12 +123,12 @@ public class RegisterEmployee {
 		this.employee = employee;
 	}
 
-	public String selectedemployee(SelectEvent event) {
-		long empid = ((Employee) event.getObject()).getEmployeeId();
-		employee = ((Employee) event.getObject());
+	public String selectedRow(Employee e) { 
+		long empid = employee.getEmployeeId();
+		selectedemployee = e;
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Selected employee "+this.employee.getFirstName()+"  and Id:"+empid));
-		return "./employee.xhtml?page=1";
+		return navigatePage1("employee","1");
 	}
  
 	

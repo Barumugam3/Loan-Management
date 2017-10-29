@@ -28,40 +28,33 @@
    	 
 		<p:growl id="message" showDetail="true" />
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
-		<f:facet name="header"><h:panelGrid columns="5">
-		 <p:column style="width:180px">   </p:column>
-		  <p:column style="width:180px">   </p:column>
-		   <p:column>  <h:outputText value="Employee" />  </p:column>
-		    <p:column style="width:180px">   </p:column>
-		     <p:column > <h:commandButton id="emp" value="Add" url="./employee.xhtml?page=0"></h:commandButton>  </p:column>
-		
-		
-		</h:panelGrid>
-    </f:facet>
-		<p:dataTable var="employee" value="#{registerEmployee.fetchall()}" selectionMode="single" selection="#{registerEmployee.employee}" rowKey="#{employee.employeeId}">
+		<f:facet name="footer">
+		<h:commandButton id="emp" value="Add" action="#{registerEmployee.navigatePage1(employee, 1)}"></h:commandButton> 
+   		 </f:facet>
+		<p:dataTable var="employeelist" value="#{registerEmployee.fetchall()}" selectionMode="single" selection="#{registerEmployee.selectedRow(employeelist)}" rowKey="#{employeelist.employeeId}">
 		
 		
 		 <p:ajax event="rowSelect" listener="#{registerEmployee.onRowSelect}" />
         <p:ajax event="rowUnselect" listener="#{registerEmployee.onRowUnselect}" />
         	
     <p:column headerText="Id">
-        <h:outputText value="#{employee.employeeId}" />
+        <h:outputText value="#{employeelist.employeeId}" />
     </p:column>
  
     <p:column headerText="Username">
-        <h:outputText value="#{employee.username}" />
+        <h:outputText value="#{employeelist.username}" />
     </p:column>
  
     <p:column headerText="First Name">
-        <h:outputText value="#{employee.firstName}" />
+        <h:outputText value="#{employeelist.firstName}" />
     </p:column>
  
     <p:column headerText="Last Name">
-        <h:outputText value="#{employee.lastName}" />
+        <h:outputText value="#{employeelist.lastName}" />
     </p:column>
-     <p:ajax event="rowEdit" listener="#{employee.onEdit}" />  
-     <p:ajax event="rowEditCancel" listener="#{employee.onCancel}"  /> 
-                    
+    <!--  <p:ajax event="rowEdit" listener="#{registerEmployee.onEdit}" />  
+     <p:ajax event="rowEditCancel" listener="#{registerEmployee.onCancel}"  /> 
+    -->                 
 </p:dataTable>
 		</p:panel>
 	</h:form>
@@ -84,44 +77,44 @@
     </f:facet>
   <p:row>
             <p:column colspan="2"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Title"></p:outputLabel></p:column>
-            <p:column colspan="2"> <h:outputText value="#{registerEmployee.employee.title}" /></p:column>
+            <p:column colspan="2"> <h:outputText value="#{registerEmployee.selectedemployee.title}" /></p:column>
         	
           
          
    </p:row>
    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.firstName}"  style="width:180px" ></h:outputText> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.firstName}"  style="width:180px" ></h:outputText> </p:column>
    </p:row>
    
    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"> <h:outputText value="#{registerEmployee.employee.middleName}" style="width:180px" ></h:outputText></p:column>
+   <p:column colspan="2"> <h:outputText value="#{registerEmployee.selectedemployee.middleName}" style="width:180px" ></h:outputText></p:column>
    </p:row>
    
    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.lastName}" style="width:180px"></h:outputText> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.lastName}" style="width:180px"></h:outputText> </p:column>
    </p:row>
    
    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.birthDATE}" style="width:180px" /> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.birthDATE}" style="width:180px" /> </p:column>
    </p:row>
    
    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.employeeHireDate}" style="width:180px" />  </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.employeeHireDate}" style="width:180px" />  </p:column>
    </p:row>
    
     <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.gender}" style="width:180px"></h:outputText> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.gender}" style="width:180px"></h:outputText> </p:column>
    </p:row>
    
     <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.employee.ssn}" style="width:180px"></h:outputText> </p:column>
+   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.ssn}" style="width:180px"></h:outputText> </p:column>
    </p:row>
    
    
@@ -161,9 +154,9 @@
         </p:row>
         </f:facet>
         	<p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="User Name:"></p:outputLabel>
-			<h:outputText value="#{registerEmployee.employee.username}" style="width:180px" ></h:outputText>	
+			<h:outputText value="#{registerEmployee.selectedemployee.username}" style="width:180px" ></h:outputText>	
 			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd1" value="Password: *" />
-       		<h:outputText id="pwd1" value="#{registerEmployee.employee.password}" match="pwd2" label="Password 1" required="true" style="width:180px" />
+       		<h:outputText id="pwd1" value="#{registerEmployee.selectedemployee.password}" match="pwd2" label="Password 1" required="true" style="width:180px" />
          </p:panelGrid>
 	
 	<p:panelGrid columns="2"  style="margin-top:0px;margin:left:20px">
@@ -174,7 +167,7 @@
         </p:row>
         </f:facet>
         	 <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Role:" for="dd" />        	 
-       		<h:outputText value="#{selectRole.roleName}" style="width:180px" ></h:outputText>
+       		<h:outputText value="#{registerEmployee.selectedemployee.role}" style="width:180px" ></h:outputText>
  				</p:panelGrid>
 	
 		<p:panelGrid columns="2"  style="margin-bottom:45px;margin-left:20px">
@@ -309,7 +302,7 @@
         </p:row>
         </f:facet>
         	 <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Role:" for="dd" />
-        <p:autoComplete id="dd" width="20px" value="#{selectRole.roleName}" completeMethod="#{selectRole.completeRoles}" />
+        <p:autoComplete id="dd" width="20px" value="#{registerEmployee.employee.password}" completeMethod="#{selectRole.completeRoles}" />
  				</p:panelGrid>
 	
 		<p:panelGrid columns="2"  style="margin-bottom:45px;margin-left:20px">
