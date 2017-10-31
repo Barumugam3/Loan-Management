@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	</h:head>
+	<h:form id="form1">             
+    <p:growl id="msgs" showDetail="true" />
+ 	 <p:tabView>
+ 	  <p:tab title="Admin" url="#" icon="fa fa-pie-chart">
+            <h:panelGrid columns="2" cellpadding="1">
+               <p:layout style="min-width:1800px;min-height:800px">
+    			<p:layoutUnit position="west" resizable="true" size="100" minSize="200" maxSize="400">
+       			<ul style="list-style-type:none">
+  				<li><h:commandLink style="text-decoration: none;color: black;" name="employeelink" action="#{registerEmployee.navigatePage1(tabView,2)}" >
+  				<ui:param name="page" value="2" />
+  				Employee</h:commandLink></li>
+  				<li><h:commandLink style="text-decoration: none;color: black;">Role</h:commandLink></li>
+  				<li><h:commandLink style="text-decoration: none;color: black;">Menu Definition</h:commandLink></li>
+  				<li><h:commandLink style="text-decoration: none;color: black;">Branch</h:commandLink></li>
+  				<li><h:commandLink style="text-decoration: none;color: black;">Menu</h:commandLink></li>
+  				<li><h:commandLink style="text-decoration: none;color: black;">Menu Items</h:commandLink></li>
+  				</ul>  
+   				 </p:layoutUnit> 
+    			<p:layoutUnit  name="panelhide" hide="true" position="center"> 
+    			 <ui:include rendered="#{param.page eq 2}" src="employee.xhtml">
+    			  <ui:param name="page" value="2" />
+    			 </ui:include>
+    			</p:layoutUnit>
+			   </p:layout>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Dash Board">
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText
+                    value="The story begins as Don Vito Corleone..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Customer">
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText value="Francis Ford Coppola's legendary..." />
+            </h:panelGrid>
+        </p:tab>fa-pie-chart
+        <p:tab title="Logout">
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText value="After a break of more than 15 years..." />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+	</h:form>
+	
+	
+	</html>

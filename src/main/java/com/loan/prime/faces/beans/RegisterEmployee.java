@@ -2,6 +2,7 @@ package com.loan.prime.faces.beans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -25,8 +26,8 @@ public class RegisterEmployee {
 	@ManagedProperty("#{employeeService}")
 	private EmployeeService employeeService;
 
-	private Employee employee = new Employee();
-	private Address address = new Address();
+	private Employee employee;
+	private Address address;
 	public String logout;
 	private int mode;
 	public List<Employee> fetchall;
@@ -35,6 +36,13 @@ public class RegisterEmployee {
  
 	PageModeBean pageMode = new PageModeBean();
 	private String update;
+	
+	@PostConstruct
+	public void init() {
+		employee = new Employee();
+		 address = new Address();
+	}
+	
     
 	public String navigatePage1(String page, String mode){	
 		return pageMode.navigatePage1(page,mode);
@@ -144,6 +152,7 @@ public class RegisterEmployee {
 	
 	public String register() {
 		// Calling Business Service
+			employee.setAddress(address);
 			employeeService.register(employee);
 			pageMode.setMode(PageMode.Browse);
 		// Add message

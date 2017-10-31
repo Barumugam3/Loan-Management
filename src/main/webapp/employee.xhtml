@@ -8,8 +8,7 @@
 	href="../loan_dev/css/custom.css" />
 	
 		<script name="jquery/jquery.js" library="primefaces"></script>
-		<link type="text/css" rel="stylesheet"
-	href="../loan_dev/css/custom.css" />
+		
 	<style>
        .ui-panel-content, .ui-widget-content{
            padding:1px;
@@ -20,10 +19,7 @@
 	
 	 <h:body>
    	<div >
-   	<p:outputPanel id="outputPanel">
-   	 <ui:include src="./template.xhtml" />
-    </p:outputPanel>
-   	 
+   	
    	 <h:form rendered="#{pageModeBean.mode eq 2 or param.page eq 2}" >
    	 
 		<p:growl id="message" showDetail="true" />
@@ -268,31 +264,31 @@
         </f:facet>
          <p:row> 
   		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.address.street1}" style="width:180px" ></p:inputText></p:column>
+    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.street1}" style="width:180px" ></p:inputText></p:column>
     	</p:row>
     	 <p:row> 
   		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.address.street2}" style="width:180px" ></p:inputText></p:column>
+    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.street2}" style="width:180px" ></p:inputText></p:column>
     	</p:row>
     	 <p:row> 
   		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.address.city}" style="width:180px" ></p:inputText></p:column>
+    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.city}" style="width:180px" ></p:inputText></p:column>
     	</p:row>
     	 <p:row> 
   		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.address.state}" style="width:180px" ></p:inputText></p:column>
+    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.state}" style="width:180px" ></p:inputText></p:column>
     	</p:row>
     	 <p:row> 
   		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.address.zip}" style="width:180px" ></p:inputText></p:column>
+    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.zip}" style="width:180px" ></p:inputText></p:column>
     	</p:row>
     	 <p:row> 
   		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.address.phone}" style="width:180px" ></p:inputText></p:column>
+    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.phone}" style="width:180px" ></p:inputText></p:column>
     	</p:row>        
          <p:row> 
   		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.address.email}" style="width:180px" ></p:inputText></p:column>
+    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.email}" style="width:180px" ></p:inputText></p:column>
     	</p:row>      		
  	               				 	
          </p:panelGrid>
