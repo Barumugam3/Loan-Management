@@ -82,8 +82,7 @@
         	
           
          
-   </p:row>
-   <p:row> 
+ 
    <p:column colspan="2"><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
    <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.firstName}"  style="width:180px" ></h:outputText> </p:column>
    </p:row>
@@ -91,9 +90,7 @@
    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
    <p:column colspan="2"> <h:outputText value="#{registerEmployee.selectedemployee.middleName}" style="width:180px" ></h:outputText></p:column>
-   </p:row>
    
-   <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
    <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.lastName}" style="width:180px"></h:outputText> </p:column>
    </p:row>
@@ -101,19 +98,13 @@
    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
    <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.birthDATE}" style="width:180px" /> </p:column>
-   </p:row>
    
-   <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
    <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.employeeHireDate}" style="width:180px" />  </p:column>
-   </p:row>
-   
-    <p:row> 
+  
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
    <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.gender}" style="width:180px"></h:outputText> </p:column>
-   </p:row>
    
-    <p:row> 
    <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
    <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.ssn}" style="width:180px"></h:outputText> </p:column>
    </p:row>
@@ -193,10 +184,10 @@
 	<h:form rendered="#{param.page !=2 and pageModeBean.mode eq 3 or param.page eq 0 or param.page eq null or param.page eq 3}">
 		<p:growl id="messages"></p:growl>
 		
-		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
+		<p:panel id="employeeid" header="Employee" style="text-align:center;margin-bottom:20px;border-style:none !important;">
 		
 		
-		  <h:panelGrid columns="3" style="border-style:none !important">
+		  <h:panelGrid columns="3" style="border-style:none !important;text-align:left">
 		
 <p:panelGrid style="margin-top:0px">
     <f:facet name="header">
@@ -206,56 +197,56 @@
        
     </f:facet>
   <p:row>
-            <p:column colspan="2"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Title"></p:outputLabel></p:column>
-            <p:column colspan="2"><p:selectOneMenu id="console" effect="fade" value="#{registerEmployee.employee.title}" style="width:80px">
+            <p:column style="width:200px;"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Title"></p:outputLabel></p:column>
+            <p:column ><p:selectOneMenu id="console" effect="fade" value="#{registerEmployee.employee.title}" style="width:80px">
         	 <f:selectItem itemLabel="" itemValue="" />
             <f:selectItem itemLabel="Mr." itemValue="Mr." />
             <f:selectItem itemLabel="Miss." itemValue="Miss." />
             <f:selectItem itemLabel="Mrs." itemValue="Mrs." />
         	</p:selectOneMenu></p:column>
           
-         
    </p:row>
-   <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><p:inputText value="#{registerEmployee.employee.firstName}"  style="width:180px" ></p:inputText> </p:column>
+   
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
+   <p:column style="width:400px;"><p:inputText value="#{registerEmployee.employee.firstName}"  style="width:180px" ></p:inputText> </p:column>
    </p:row>
    
    <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"> <p:inputText value="#{registerEmployee.employee.middleName}" style="width:180px" ></p:inputText></p:column>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
+   <p:column > <p:inputText value="#{registerEmployee.employee.middleName}" style="width:180px" ></p:inputText></p:column>
+ </p:row>
+   
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
+   <p:column ><p:inputText value="#{registerEmployee.employee.lastName}" style="width:180px"></p:inputText> </p:column>
    </p:row>
    
    <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><p:inputText value="#{registerEmployee.employee.lastName}" style="width:180px"></p:inputText> </p:column>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
+   <p:column ><p:calendar style="width:60px" value="#{registerEmployee.employee.birthDATE}"></p:calendar> </p:column>
    </p:row>
    
-   <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><p:calendar style="width:60px" value="#{registerEmployee.employee.birthDATE}"></p:calendar> </p:column>
-   </p:row>
-   
-   <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
-   <p:column colspan="2"><p:calendar style="width:180px" value="#{registerEmployee.employee.employeeHireDate}"></p:calendar> </p:column>
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
+   <p:column ><p:calendar style="width:180px" value="#{registerEmployee.employee.employeeHireDate}"></p:calendar> </p:column>
    </p:row>
    
     <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
-   <p:column colspan="2"><p:inputText value="#{registerEmployee.employee.gender}" style="width:180px"></p:inputText> </p:column>
-   </p:row>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
+   <p:column ><p:inputText value="#{registerEmployee.employee.gender}" style="width:180px"></p:inputText> </p:column>
+  </p:row>
    
-    <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
-   <p:column colspan="2"><p:inputText value="#{registerEmployee.employee.ssn}" style="width:180px"></p:inputText> </p:column>
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
+   <p:column ><p:inputText value="#{registerEmployee.employee.ssn}" style="width:180px"></p:inputText> </p:column>
    </p:row>
-   
+  
    
  
 </p:panelGrid>      		
 		
-		<p:panelGrid style="margin-top:0px">
+		<p:panelGrid style="margin-top:0px;margin-left:40px">
 		<f:facet name="header">
         <p:row>
             <p:column colspan="4">Address</p:column>
@@ -263,37 +254,34 @@
         </p:row>
         </f:facet>
          <p:row> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.street1}" style="width:180px" ></p:inputText></p:column>
+  		 <p:column style="width:200px;"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel></p:column>
+    	<p:column style="width:400px;"><p:inputText value="#{registerEmployee.address.street1}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+   
+   <p:row>
+  		 <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.street2}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+    	
+    	 <p:row> 
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.city}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+   
+   <p:row>
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.state}" style="width:180px" ></p:inputText></p:column>
     	</p:row>
     	 <p:row> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.street2}" style="width:180px" ></p:inputText></p:column>
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.zip}" style="width:180px" ></p:inputText></p:column>
     	</p:row>
-    	 <p:row> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.city}" style="width:180px" ></p:inputText></p:column>
-    	</p:row>
-    	 <p:row> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.state}" style="width:180px" ></p:inputText></p:column>
-    	</p:row>
-    	 <p:row> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.zip}" style="width:180px" ></p:inputText></p:column>
-    	</p:row>
-    	 <p:row> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.phone}" style="width:180px" ></p:inputText></p:column>
-    	</p:row>        
-         <p:row> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.address.email}" style="width:180px" ></p:inputText></p:column>
-    	</p:row>      		
- 	               				 	
+   
+ 		<p:row style="padding-top: 100px"><p:column colspan="2" style="padding-top: 105px"></p:column></p:row> 		
+ 	   	   
          </p:panelGrid>
 		
-		<p:panelGrid columns="4"  style="margin-bottom:190px;margin-left:20px">
+		<p:panelGrid style="margin-top:0px;margin-left:40px">
 		<f:facet name="header">
         <p:row>
             <p:column colspan="4">Credentials</p:column>
@@ -301,33 +289,37 @@
         </p:row>
         </f:facet>
          <p:row> 
-  		 <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="User Name:"></p:outputLabel></p:column>
-    	<p:column colspan="2"><p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	</p:column>
+  		 <p:column style="width:200px;"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="User Name:"></p:outputLabel></p:column>
+    	<p:column style="width:400px;"><p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	</p:column>
     	</p:row>        
-        <p:row rendered="#{param.page eq 3 or param.page}"> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd1" value="Password: *" /></p:column>
-  		 <p:column colspan="2"><p:password id="pwd1" value="#{registerEmployee.employee.password}" match="pwd2" label="Password 1" required="true" style="width:180px" /></p:column>
+        <p:row> 
+  		 <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd1" value="Password: *" /></p:column>
+  		 <p:column><p:password id="pwd1" value="#{registerEmployee.employee.password}" match="pwd2" label="Password 1" required="true" style="width:180px" /></p:column>
   		</p:row>
-  		<p:row rendered="#{param.page eq 3 or param.page}"> 
-  		 <p:column colspan="2"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd2" value="Confirm password: *" /></p:column>
-  		 <p:column colspan="2"><p:password id="pwd2" value="#{registerEmployee.employee.password}" label="Password 2" required="true" style="width:180px"/></p:column>
-  		</p:row>  		
+  		<p:row> 
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd2" value="Confirm password: *" /></p:column>
+  		 <p:column ><p:password id="pwd2" value="#{registerEmployee.employee.password}" label="Password 2" required="true" style="width:180px"/></p:column>
+  		</p:row>  	
+  			<p:row style="padding-top: 100px"><p:column colspan="2" style="padding-top: 175px"></p:column></p:row> 			
          </p:panelGrid>
 	
-	<p:panelGrid style="margin-top:0px">
+	<p:panelGrid style="margin-top:20px">
 		<f:facet name="header">
         <p:row>
-            <p:column colspan="4">Other Info</p:column>
+            <p:column colspan="2">Contact Info</p:column>
             
         </p:row>
         </f:facet>
         <p:row> 
-  		 <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Role:" for="dd" /></p:column>
-  		 <p:column colspan="2"> <p:autoComplete id="dd" width="20px" value="#{registerEmployee.employee.role}" completeMethod="#{selectRole.completeRoles}" /></p:column>
+         <p:column style="width:200px;"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel></p:column>
+		 <p:column style="width:400px;"><h:inputText value="#{registerEmployee.selectedemployee.address.phone}" style="width:180px" ></h:inputText></p:column>	
+		 </p:row> <p:row> 
+		  <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel></p:column>
+       	   <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.email}" style="width:180px" ></h:outputText></p:column>
   		</p:row>  		
   		</p:panelGrid>
 	
-		<p:panelGrid style="margin-top:0px">
+			<p:panelGrid style="margin-top:0px;margin-left:40px">
 		<f:facet name="header">
         <p:row>
             <p:column colspan="4">Branch</p:column>
@@ -336,8 +328,8 @@
         
         </f:facet>
         <p:row> 
-  		 <p:column colspan="2"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Branch:"></p:outputLabel></p:column>
-  		 <p:column colspan="2"><p:inputText value="New York" style="width:180px" ></p:inputText></p:column>
+  		  <p:column style="width:200px;"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Branch:"></p:outputLabel></p:column>
+  		  <p:column style="width:400px;"><p:inputText value="New York" style="width:180px" ></p:inputText></p:column>
   		</p:row>      
 		</p:panelGrid>
  				
