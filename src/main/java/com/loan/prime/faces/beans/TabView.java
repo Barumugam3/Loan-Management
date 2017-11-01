@@ -1,15 +1,20 @@
 package com.loan.prime.faces.beans;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
-@SessionScoped
 public class TabView {
 
 	private String pageView;
 
+	public TabView(){		
+	}
+	public void pageView(){
+		String strParam = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("navpage");
+		System.out.println(strParam);
+		this.pageView = strParam;
+	}
 	public String getPageView() {
 		return pageView;
 	}

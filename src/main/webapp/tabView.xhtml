@@ -14,23 +14,26 @@
  	  <p:tab title="Admin" url="#" icon="fa fa-pie-chart">
             <h:panelGrid columns="2" cellpadding="1">
                <p:layout style="min-width:1800px;min-height:800px">
+              
     			<p:layoutUnit position="west" resizable="true" size="100" minSize="200" maxSize="400">
        			<ul style="list-style-type:none">
-  				<li><h:commandLink style="text-decoration: none;color: black;" name="employeelink" action="#{registerEmployee.navigatePage1(tabView,2)}" >
-  				<ui:param name="page" value="2" />
+  				<li><h:commandLink style="text-decoration: none;color: black;" name="employeelink" action="#{tabView.pageView}" >
+  				<f:ajax render="panelContent" execute="@this" />
+       			<f:param name="navpage" value="./employee.xhtml" />
   				Employee</h:commandLink></li>
   				<li><h:commandLink style="text-decoration: none;color: black;">Role</h:commandLink></li>
   				<li><h:commandLink style="text-decoration: none;color: black;">Menu Definition</h:commandLink></li>
   				<li><h:commandLink style="text-decoration: none;color: black;">Branch</h:commandLink></li>
-  				<li><h:commandLink style="text-decoration: none;color: black;">Menu</h:commandLink></li>
-  				<li><h:commandLink style="text-decoration: none;color: black;">Menu Items</h:commandLink></li>
   				</ul>  
-   				 </p:layoutUnit> 
-    			<p:layoutUnit  name="panelhide" hide="true" position="center"> 
-    			 <ui:include rendered="#{param.page eq 2}" src="employee.xhtml">
-    			  <ui:param name="page" value="2" />
-    			 </ui:include>
+  				</p:layoutUnit> 
+    			 <p:layoutUnit   position="center"> 
+    			<h:panelGroup id="panelContent">
+    			 <ui:include  src="#{tabView.pageView}" >    			 
+    			<ui:param name="param.page" value="2" />
+    			</ui:include>
+    			 </h:panelGroup>
     			</p:layoutUnit>
+               
 			   </p:layout>
             </h:panelGrid>
         </p:tab>
