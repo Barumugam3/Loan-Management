@@ -312,10 +312,10 @@
         </f:facet>
         <p:row> 
          <p:column style="width:200px;"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel></p:column>
-		 <p:column style="width:400px;"><h:inputText value="#{registerEmployee.selectedemployee.address.phone}" style="width:180px" ></h:inputText></p:column>	
+		 <p:column style="width:400px;"><h:inputText value="#{registerEmployee.address.phone}" style="width:180px" ></h:inputText></p:column>	
 		 </p:row> <p:row> 
 		  <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel></p:column>
-       	   <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.email}" style="width:180px" ></h:outputText></p:column>
+       	   <p:column><h:inputText value="#{registerEmployee.address.email}" style="width:180px" ></h:inputText></p:column>
   		</p:row>  		
   		</p:panelGrid>
 	
