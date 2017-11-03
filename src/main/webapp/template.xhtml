@@ -8,17 +8,21 @@
 		<title>Title</title>
 	</h:head>
 	<h:form>
-<p:tab title="template">
-            <p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank">
-                 <h:graphicImage value = "/images/loan-logo.jpg"  style="float:left" width="200" height="100"/>
-                 <h2 align="center">Loan Management v1.0</h2>
-      <p:menubar style="background:#ffffff; border:0">
-     <f:facet name="options">
-      <p:commandButton  value="#{loginBean.user}" icon="ui-icon-person"/>
-      <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
-        </f:facet>
-   	</p:menubar>
-            </p:panelGrid>
-        </p:tab>
+    			
+<table>
+<tr >
+<TD colspan="3" align="left" width="10%">
+<h:graphicImage value = "/images/loan-logo.jpg"  style="float:left" width="200" height="50"/>
+</TD>
+<TD colspan="3" align="center" width="75%">
+ <h2 align="center">Loan Management v1.0</h2>
+</TD>
+<td colspan="3" align="right" width="15%">
+ <p:commandButton  value="#{loginBean.user}" icon="ui-icon-person"/>
+ 	<h:form><p:commandButton icon="ui-icon-arrowthickstop-1-e" action="#{registerEmployee.logout}"></p:commandButton></h:form>
+ </td>
+</tr>
+</table>
+
 </h:form>
 	</html>
