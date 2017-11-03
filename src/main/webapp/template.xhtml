@@ -18,8 +18,8 @@
  <h2 align="center">Loan Management v1.0</h2>
 </TD>
 <td colspan="3" align="right" width="15%">
- <p:commandButton  value="#{loginBean.user}" icon="ui-icon-person"/>
- 	<h:form><p:commandButton icon="ui-icon-arrowthickstop-1-e" action="#{registerEmployee.logout}"></p:commandButton></h:form>
+ <p:commandButton  value="#{loginBean.user}" icon="fa fa-user" />
+ 	<h:form><p:commandButton id="idEmptyLabel" icon="fa fa-sign-out" action="#{registerEmployee.logout}"/><p:tooltip id="toolTipContent" for="idEmptyLabel" showEffect="blind" position="bottom"  style="height:10px;background-color:white" value="Log out" /></h:form>
  </td>
 </tr>
 </table>
