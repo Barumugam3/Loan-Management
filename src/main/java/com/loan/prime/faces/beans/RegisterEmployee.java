@@ -140,13 +140,12 @@ public class RegisterEmployee {
 		this.employee = employee;
 	}
 
-	public String selectedemployee(Employee e) { 
+	public void selectedemployee(Employee e) { 
 		long empid = e.getEmployeeId();
 		selectedemployee = e;
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Selected employee "+this.selectedemployee.getFirstName()+"  and Id:"+empid));
 		setMode(1);
-		return navigatePage1("employee","1");
 	}
  
 	
