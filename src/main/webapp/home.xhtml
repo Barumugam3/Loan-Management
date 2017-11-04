@@ -7,8 +7,22 @@
 		xmlns:p="http://primefaces.org/ui">
 	<h:head>
 	<script name="jquery/jquery.js" library="primefaces"></script>
+	<script>
+	 $(document).ready(function() {
+	  windowHeight = $(window).innerHeight();
+	$('.globallayout').css('min-height', windowHeight);
+	$('.homelayout').css('min-height', windowHeight-200);
+	});
+	 $(document).ready(function() {
+		  windowWidth = $(window).innerWidth();
+		$('.globallayout').css('min-width', windowWidth);
+		$('.homelayout').css('min-width', windowWidth);
+		});
+	
+	</script>
 	
 	</h:head>
+	  <p:outputPanel class="globallayout">
 	<h:form id="form1">     
 	<p:outputPanel id="outputPanel">
    	 <ui:include src="./template.xhtml" />
@@ -17,15 +31,16 @@
  	 <p:tabView>
  	  <p:tab title="Admin" url="#" icon="fa fa-pie-chart">
             
-               <p:layout style="max-width:1600px;min-height:600px">
+               <p:layout class="homelayout">
               
-    			<p:layoutUnit position="west" resizable="true" size="70" minSize="170" maxSize="300">
+    			<p:layoutUnit position="west" resizable="true" size="70" minSize="200" maxSize="300">       			
+  				
+  				<p:menu><p:menuitem  value="Employee" actionListener="#{tabView.pageView}" ajax="true" update="panelContent">            		
+       			<f:param name="navpage" value="./employee.xhtml" /> </p:menuitem></p:menu>
+       			  				
+  				<p:menu><p:menuitem  value="Role" actionListener="#{tabView.pageView}" ajax="true" update="panelContent">            		
+       			<f:param name="navpage" value="./Role.xhtml" /></p:menuitem></p:menu><p:menu>
        			
-  				<p:menu><p:menuitem><li style="list-style-type:none"><h:commandLink style="text-decoration: none;" name="employeelink" action="#{tabView.pageView}" >
-  				<f:ajax render="panelContent" execute="@this" />
-       			<f:param name="navpage" value="./employee.xhtml" />
-  				Employee</h:commandLink></li></p:menuitem></p:menu>
-  				<p:menu><p:menuitem>Role</p:menuitem></p:menu><p:menu>
   				<p:menuitem>Menu Definition</p:menuitem></p:menu>
   				<p:menu><p:menuitem>Branch</p:menuitem></p:menu>  				
   				</p:layoutUnit> 
@@ -54,6 +69,5 @@
       
     </p:tabView>
 	</h:form>
-	
-	
+	</p:outputPanel>
 	</html>

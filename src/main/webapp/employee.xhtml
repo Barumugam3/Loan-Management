@@ -20,7 +20,7 @@
 	 <h:body>
    	<div >
    	
-   	 <h:form rendered="#{pageModeBean.mode eq 2 or param.page eq 2}" >
+   	 <h:form rendered="#{page eq 2 or pageModeBean.mode eq 2 or param.page eq 2}" >
    	 
 		<p:growl id="message" showDetail="true" />
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
@@ -49,8 +49,8 @@
         <h:outputText value="#{employee.lastName}" />
     </p:column>
     
-      <p:column headerText="OPerations">
-        <h:commandButton value="View" action="#{registerEmployee.selectedemployee(employee)}" />
+      <p:column headerText="View">
+        <h:commandButton value="View" actionListener="#{registerEmployee.selectedemployee(employee)}" ajax="true" update=":formUpdate" />
     </p:column>
     
     <!--  <p:ajax event="rowEdit" listener="#{registerEmployee.onEdit}" />  
@@ -61,7 +61,7 @@
 	</h:form>
    	 <!-- Browse Mode -->
    	   	
-	<h:form rendered="#{pageModeBean.mode eq 1 or param.page eq 1}">
+	<h:form id="formUpdate" rendered="#{pageModeBean.mode eq 1 or param.page eq 1}">
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
@@ -181,7 +181,7 @@
 	
 	   	<!-- Create and Edit--> 
    	   	
-	<h:form rendered="#{param.page !=2 and pageModeBean.mode eq 3 or param.page eq 0 or param.page eq null or param.page eq 3}">
+	<h:form rendered="#{page eq null and param.page !=2 and pageModeBean.mode eq 3 or param.page eq 0 or page eq null or param.page eq 3}">
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="text-align:center;margin-bottom:20px;border-style:none !important;">
