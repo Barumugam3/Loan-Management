@@ -1,28 +1,40 @@
-	<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:p="http://primefaces.org/ui">
 	<h:head>
 		<script name="jquery/jquery.js" library="primefaces"></script>
-		<title>Register Employee</title>
-	</h:head>
+		<title>Role</title>
+	</h:head>	
+	 <h:body>   	 
+   	<div><p:panel id="rolePanel" header="Role" style="margin-bottom:20px;border-style:none !important;text-align: center">     
 	
-	 <h:body>
-   	 
-   	<div>
-	<h:form>
-		<p:growl id="rolemessages"></p:growl>
-		<p:panel id="employeeid" header="Role" style="margin-bottom:20px;">
-		<p:panel id="personalinfo" header="Role Info" style="margin-bottom:20px">
-       
-		<p:panelGrid columns="2">
-			<p:outputLabel value="Role"></p:outputLabel>
-			<p:inputText value="#{selectRole.role.role}"></p:inputText>
+	 <h:panelGrid columns="3" style="border-style:none !important;text-align:center">
+	<h:form id="roleform" prependId="false">
+		<p:growl id="rolemessages"></p:growl>		  
+		<p:panelGrid >
+		    <f:facet name="header">
+        <p:row> 
+            <p:column colspan="4">Info</p:column>
+        </p:row>
+   		 </f:facet>
+		 	<p:row>
+            <p:column> 
+			<p:outputLabel value="Role"></p:outputLabel></p:column>
+			<p:column> 
+			<p:inputText value="#{selectRole.role.role}"></p:inputText>	</p:column>
+			</p:row>
+			<p:row>
+            <p:column> 
 			<p:outputLabel value="Description"></p:outputLabel>
-			<p:inputText value="#{selectRole.role.description}"></p:inputText>
-			</p:panelGrid></p:panel>
-		<p:commandButton value="Add" actionListener="#{selectRole.register}" update="rolemessages"></p:commandButton>
-		</p:panel>
-	</h:form></div></h:body>
-	</html>
+			</p:column>
+			<p:column> <p:inputText value="#{selectRole.role.description}"></p:inputText>
+			</p:column>
+			</p:row>			
+			</p:panelGrid>
+				<p:commandButton value="Add" actionListener="#{selectRole.register}" update="rolemessages"></p:commandButton>
+		</h:form></h:panelGrid>
+	</p:panel>
+	</div></h:body>
+	</ui:fragment>

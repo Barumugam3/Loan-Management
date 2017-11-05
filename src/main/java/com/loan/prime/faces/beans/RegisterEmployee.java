@@ -35,8 +35,18 @@ public class RegisterEmployee {
 	private Employee selectedemployee;
  
 	PageModeBean pageMode = new PageModeBean();
-	private String update;
+	private String updateemployee;
 	
+	public String getUpdateemployee() {
+		return updateemployee;
+	}
+
+
+	public void setUpdateemployee(String updateemployee) {
+		this.updateemployee = updateemployee;
+	}
+
+
 	@PostConstruct
 	public void init() {
 		employee = new Employee();
@@ -48,16 +58,7 @@ public class RegisterEmployee {
 		return pageMode.navigatePage1(page,mode);
 		
 	}
-	
-	public String getUpdate() {
-		return update;
-	}
-
-
-	public void setUpdate(String update) {
-		this.update = update;
-	} 
-	
+		
 	public Address getAddress() {
 		return address;
 	}
@@ -140,12 +141,12 @@ public class RegisterEmployee {
 		this.employee = employee;
 	}
 
-	public void selectedemployee(Employee e) { 
+	public String selectedemployee(Employee e) { 
 		long empid = e.getEmployeeId();
 		selectedemployee = e;
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Selected employee "+this.selectedemployee.getFirstName()+"  and Id:"+empid));
-		setMode(1);
+		return navigatePage1("employee","1");
 	}
  
 	
@@ -153,7 +154,6 @@ public class RegisterEmployee {
 		// Calling Business Service
 			employee.setAddress(address);
 			employeeService.register(employee);
-			pageMode.setMode(PageMode.Browse);
 		// Add message
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("The Employee "+this.employee.getUsername()+" Is Registered Successfully"));
@@ -170,8 +170,9 @@ public class RegisterEmployee {
 		return navigatePage1("employee","3");
 	}
 	
-	public String update() {
+	public String updateemployee() {
 		// Calling Business Service
+			employee.setAddress(address);
 			employeeService.update(employee);
 			pageMode.setMode(PageMode.Browse);
 		// Add message

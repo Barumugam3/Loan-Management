@@ -20,7 +20,11 @@
 		});
 	
 	</script>
-	
+		<style>
+       .ui-panel-content, .ui-widget-content{
+           padding:1px;
+       }
+  </style>
 	</h:head>
 	  <p:outputPanel class="globallayout">
 	<h:form id="form1">     
@@ -31,13 +35,12 @@
  	 <p:tabView>
  	  <p:tab title="Admin" url="#" icon="fa fa-pie-chart">
             
-               <p:layout class="homelayout">
+               <p:layout class="homelayout" >
               
     			<p:layoutUnit position="west" resizable="true" size="70" minSize="200" maxSize="300">       			
   				
-  				<p:menu><p:menuitem  value="Employee" actionListener="#{tabView.pageView}" ajax="true" update="panelContent">            		
-       			<f:param name="navpage" value="./employee.xhtml" /> </p:menuitem></p:menu>
-       			  				
+  			<p:menu><p:menuitem  value="Employee" url="./employee.xhtml?page=2" >            		
+       			</p:menuitem></p:menu>  				
   				<p:menu><p:menuitem  value="Role" actionListener="#{tabView.pageView}" ajax="true" update="panelContent">            		
        			<f:param name="navpage" value="./Role.xhtml" /></p:menuitem></p:menu><p:menu>
        			

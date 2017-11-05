@@ -56,7 +56,7 @@ public class SelectRole {
 		this.completeRoles = completeRoles;
 	}
 	
-	public String register() {
+	public void register() {
 		String newRole = role.getRole();
 		List<Object> allRoles = roleService.getRoles();
 		boolean previousCheck = false;
@@ -74,7 +74,7 @@ public class SelectRole {
 			// Add message
 			FacesContext.getCurrentInstance().addMessage(
 					null,
-					new FacesMessage("The Admin : " + this.role.getRole()
+					new FacesMessage("The Super Admin : " + this.role.getRole()
 							+ " role added Successfully"));
 
 		}else{
@@ -82,8 +82,7 @@ public class SelectRole {
 					null,
 					new FacesMessage("This role already registered : " + this.role.getRole()));
 
-		}
-		return "";
+		}		
 	}
 	
 	 public List<String> completeRoles(String query) {

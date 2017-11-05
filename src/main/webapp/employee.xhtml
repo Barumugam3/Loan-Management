@@ -1,28 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:p="http://primefaces.org/ui">
 	<h:head>
-		<link type="text/css" rel="stylesheet"
-	href="../loan_dev/css/custom.css" />
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	<script>
+	 $(document).ready(function() {
+	  windowHeight = $(window).innerHeight();
+	$('.globallayout').css('min-height', windowHeight);
+	$('.homelayout').css('min-height', windowHeight-200);
+	});
+	 $(document).ready(function() {
+		  windowWidth = $(window).innerWidth();
+		$('.globallayout').css('min-width', windowWidth);
+		$('.homelayout').css('min-width', windowWidth);
+		});
 	
-		<script name="jquery/jquery.js" library="primefaces"></script>
-		
-	<style>
+	</script>
+		<style>
        .ui-panel-content, .ui-widget-content{
            padding:1px;
        }
   </style>
-		<title>Employee</title>
 	</h:head>
-	
-	 <h:body>
+	  <p:outputPanel class="globallayout">
+	<h:form id="mainform">     
+	<p:outputPanel id="outputPanel">
+   	 <ui:include src="./template.xhtml" />
+    </p:outputPanel>       
+    <p:growl id="msgs" showDetail="true" />
+ 	 <p:tabView>
+ 	  <p:tab title="Admin" url="#" icon="fa fa-pie-chart">
+            
+               <p:layout class="homelayout" >
+              
+    			<p:layoutUnit position="west" resizable="true" size="70" minSize="200" maxSize="300">       			
+  				
+  				<p:menu><p:menuitem  value="Employee" url="./employee.xhtml?page=2" >            		
+       			</p:menuitem></p:menu>
+       			  				
+  				<p:menu><p:menuitem  value="Role" actionListener="#{tabView.pageView}" ajax="true" update="panelContent">            		
+       			<f:param name="navpage" value="./Role.xhtml" /></p:menuitem></p:menu><p:menu>
+       			
+  				<p:menuitem>Menu Definition</p:menuitem></p:menu>
+  				<p:menu><p:menuitem>Branch</p:menuitem></p:menu>  				
+  				</p:layoutUnit> 
+    			 <p:layoutUnit   position="center"  resizable="true" size="80" minSize="150" maxSize="800"> 
+    			<h:panelGroup id="panelContent">
    	<div >
    	
-   	 <h:form rendered="#{page eq 2 or pageModeBean.mode eq 2 or param.page eq 2}" >
+   	 <h:form id="form2" rendered="#{param.page eq 2 or page eq 2}" >
    	 
-		<p:growl id="message" showDetail="true" />
+		<p:growl id="message1" showDetail="true" />
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
 		<f:facet name="footer">
 		<h:commandButton id="emp" value="Add" action="#{registerEmployee.navigatePage1(employee, 1)}"></h:commandButton> 
@@ -50,7 +82,8 @@
     </p:column>
     
       <p:column headerText="View">
-        <h:commandButton value="View" actionListener="#{registerEmployee.selectedemployee(employee)}" ajax="true" update=":formUpdate" />
+        <h:commandLink value="View" actionListener="#{registerEmployee.selectedemployee(employee)}" update="message1" >
+       </h:commandLink>
     </p:column>
     
     <!--  <p:ajax event="rowEdit" listener="#{registerEmployee.onEdit}" />  
@@ -61,7 +94,7 @@
 	</h:form>
    	 <!-- Browse Mode -->
    	   	
-	<h:form id="formUpdate" rendered="#{pageModeBean.mode eq 1 or param.page eq 1}">
+	<h:form id="form1" rendered="#{param.page eq 1 or page eq 1}">
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
@@ -72,70 +105,82 @@
 <p:panelGrid style="margin-top:0px">
     <f:facet name="header">
         <p:row>
-            <p:column colspan="7">Personal Info</p:column>
+            <p:column colspan="8">Personal Info</p:column>
         </p:row>
        
     </f:facet>
   <p:row>
-            <p:column colspan="2"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Title"></p:outputLabel></p:column>
-            <p:column colspan="2"> <h:outputText value="#{registerEmployee.selectedemployee.title}" /></p:column>
-        	
+            <p:column> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Title"></p:outputLabel></p:column>
+            <p:column> <h:outputText value="#{registerEmployee.selectedemployee.title}" /></p:column>
+        </p:row> 	
           
          
- 
-   <p:column colspan="2"><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.firstName}"  style="width:180px" ></h:outputText> </p:column>
+ <p:row> 
+   <p:column><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
+   <p:column><h:outputText value="#{registerEmployee.selectedemployee.firstName}"  style="width:180px" ></h:outputText> </p:column>
    </p:row>
    
    <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"> <h:outputText value="#{registerEmployee.selectedemployee.middleName}" style="width:180px" ></h:outputText></p:column>
-   
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.lastName}" style="width:180px"></h:outputText> </p:column>
+   <p:column><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
+   <p:column> <h:outputText value="#{registerEmployee.selectedemployee.middleName}" style="width:180px" ></h:outputText></p:column>
+   </p:row> <p:row> 
+   <p:column><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
+   <p:column><h:outputText value="#{registerEmployee.selectedemployee.lastName}" style="width:180px"></h:outputText> </p:column>
    </p:row>
    
    <p:row> 
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.birthDATE}" style="width:180px" /> </p:column>
-   
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.employeeHireDate}" style="width:180px" />  </p:column>
-  
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.gender}" style="width:180px"></h:outputText> </p:column>
-   
-   <p:column colspan="2"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
-   <p:column colspan="2"><h:outputText value="#{registerEmployee.selectedemployee.ssn}" style="width:180px"></h:outputText> </p:column>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
+   <p:column ><h:outputText value="#{registerEmployee.selectedemployee.birthDATE}" style="width:180px" /> </p:column>
+   </p:row><p:row> 
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
+   <p:column ><h:outputText value="#{registerEmployee.selectedemployee.employeeHireDate}" style="width:180px" />  </p:column>
+  </p:row> <p:row> 
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
+   <p:column ><h:outputText value="#{registerEmployee.selectedemployee.gender}" style="width:180px"></h:outputText> </p:column>
+   </p:row> <p:row> 
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
+   <p:column ><h:outputText value="#{registerEmployee.selectedemployee.ssn}" style="width:180px"></h:outputText> </p:column>
    </p:row>
    
    
  
 </p:panelGrid>      		
 		
-		<p:panelGrid columns="2"  style="margin-bottom:45px;margin-left:20px">
+		<p:panelGrid  style="margin-bottom:45px;margin-left:20px">
 		<f:facet name="header">
         <p:row>
-            <p:column colspan="2">Address</p:column>
+            <p:column colspan="4">Address</p:column>
             
         </p:row>
         </f:facet>
-        	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel>
-			<h:outputText value="#{registerEmployee.selectedemployee.address.street1}" style="width:180px" ></h:outputText>	
-			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel>
-       		<h:outputText value="#{registerEmployee.selectedemployee.address.street2}" style="width:180px" ></h:outputText>	
- 	        <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel>
-       		<h:outputText value="#{registerEmployee.selectedemployee.address.city}" style="width:180px" ></h:outputText>	
-       		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel>
-       		 <h:outputText value="#{registerEmployee.selectedemployee.address.state}" style="width:180px" ></h:outputText>	
-       		 <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel>
-       		 <h:outputText value="#{registerEmployee.selectedemployee.address.zip}" style="width:180px" ></h:outputText>	
-        	<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel>
-			<h:outputText value="#{registerEmployee.selectedemployee.address.phone}" style="width:180px" ></h:outputText>	
-			<h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel>
-       		<h:outputText value="#{registerEmployee.selectedemployee.address.email}" style="width:180px" ></h:outputText>
-       		
- 	               				 	
+          <p:row>
+            <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel></p:column>
+            <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.street1}" style="width:180px" ></h:outputText></p:column>
+          </p:row> 
+           <p:row>
+            <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel></p:column>
+            <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.street2}" style="width:180px" ></h:outputText></p:column>
+          </p:row> 
+           <p:row>
+            <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel></p:column>
+            <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.city}" style="width:180px" ></h:outputText></p:column>
+          </p:row> 
+           <p:row>
+            <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel></p:column>
+            <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.state}" style="width:180px" ></h:outputText></p:column>
+          </p:row> 
+           <p:row>
+            <p:column> <h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel></p:column>
+            <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.zip}" style="width:180px" ></h:outputText></p:column>
+          </p:row> 
+           <p:row>
+            <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel></p:column>
+            <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.phone}" style="width:180px" ></h:outputText></p:column>
+          </p:row> 
+           <p:row>
+            <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel></p:column>
+            <p:column><h:outputText value="#{registerEmployee.selectedemployee.address.email}" style="width:180px" ></h:outputText></p:column>
+          </p:row> 	
          </p:panelGrid>
 		
 		<p:panelGrid columns="2"  style="margin-bottom:190px;margin-left:20px">
@@ -175,13 +220,13 @@
  				
 	</h:panelGrid>
 	</p:panel>
-<div align="center"><p:commandButton value="Edit" action="#{registerEmployee.edit}" update="messages"></p:commandButton>
+<div align="center"><p:commandLink value="Edit" action="#{registerEmployee.edit}" update="messages"></p:commandLink>
 	</div>
 	</h:form>
 	
 	   	<!-- Create and Edit--> 
    	   	
-	<h:form rendered="#{page eq null and param.page !=2 and pageModeBean.mode eq 3 or param.page eq 0 or page eq null or param.page eq 3}">
+	<h:form id="form0" rendered="#{page eq 0 or param.page eq 0}">
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="text-align:center;margin-bottom:20px;border-style:none !important;">
@@ -300,7 +345,15 @@
   		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd2" value="Confirm password: *" /></p:column>
   		 <p:column ><p:password id="pwd2" value="#{registerEmployee.employee.password}" label="Password 2" required="true" style="width:180px"/></p:column>
   		</p:row>  	
-  			<p:row style="padding-top: 100px"><p:column colspan="2" style="padding-top: 175px"></p:column></p:row> 			
+  		<p:row> 
+  		 <p:column >
+  		 <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Role: *" for="dd" />
+  		 </p:column>
+  		 <p:column >
+        <p:autoComplete dropdown="true" id="dd" width="20px" value="#{registerEmployee.employee.role}" completeMethod="#{selectRole.completeText}" />
+ 		 </p:column>
+  		 </p:row>  		
+  		<p:row style="padding-top: 100px"><p:column colspan="2" style="padding-top: 147px"></p:column></p:row> 			
          </p:panelGrid>
 	
 	<p:panelGrid style="margin-top:20px">
@@ -337,17 +390,202 @@
 	</p:panel>
 	
 	
-<div align="center">
-<p:outputPanel rendered="#{pageModeBean.mode eq 0 or param.page eq null}">   	    	 
-<p:commandButton value="Save" action="#{registerEmployee.register}" update="messages"></p:commandButton>
-  </p:outputPanel>
-  <p:outputPanel rendered="#{pageModeBean.mode eq 3 or  param.page eq 3}">   	    	 
-<p:commandButton value="Update" action="#{registerEmployee.update()}" update="messages"></p:commandButton>
-  </p:outputPanel>
-
+<div align="center">   	 
+<p:commandButton rendered="#{page eq 0 or param.page eq 0}" value="Save" action="#{registerEmployee.register()}" update="messages"></p:commandButton>
 	</div>
 	</h:form>
 	
+	   	
+	<h:form id="form3" rendered="#{page eq 3 or param.page eq 3}">
+		<p:growl id="messages"></p:growl>
+		
+		<p:panel id="form3Panel" header="Employee" style="text-align:center;margin-bottom:20px;border-style:none !important;">
+		
+		
+		  <h:panelGrid columns="3" style="border-style:none !important;text-align:left">
+		
+<p:panelGrid style="margin-top:0px">
+    <f:facet name="header">
+        <p:row>
+            <p:column colspan="4">Personal Info</p:column>
+        </p:row>
+       
+    </f:facet>
+  <p:row>
+            <p:column style="width:200px;"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Title"></p:outputLabel></p:column>
+            <p:column ><p:selectOneMenu id="console" effect="fade" value="#{registerEmployee.employee.title}" style="width:80px">
+        	 <f:selectItem itemLabel="" itemValue="" />
+            <f:selectItem itemLabel="Mr." itemValue="Mr." />
+            <f:selectItem itemLabel="Miss." itemValue="Miss." />
+            <f:selectItem itemLabel="Mrs." itemValue="Mrs." />
+        	</p:selectOneMenu></p:column>
+          
+   </p:row>
+   
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:start;font-weight:bold;white-space: nowrap;" value="First Name:"></p:outputLabel> </p:column>
+   <p:column style="width:400px;"><p:inputText value="#{registerEmployee.employee.firstName}"  style="width:180px" ></p:inputText> </p:column>
+   </p:row>
+   
+   <p:row> 
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Middle Name:"></p:outputLabel> </p:column>
+   <p:column > <p:inputText value="#{registerEmployee.employee.middleName}" style="width:180px" ></p:inputText></p:column>
+ </p:row>
+   
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Last Name:"></p:outputLabel> </p:column>
+   <p:column ><p:inputText value="#{registerEmployee.employee.lastName}" style="width:180px"></p:inputText> </p:column>
+   </p:row>
+   
+   <p:row> 
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Birth Date:"></p:outputLabel> </p:column>
+   <p:column ><p:calendar style="width:60px" value="#{registerEmployee.employee.birthDATE}"></p:calendar> </p:column>
+   </p:row>
+   
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Hire Date:"></p:outputLabel></p:column>
+   <p:column ><p:calendar style="width:180px" value="#{registerEmployee.employee.employeeHireDate}"></p:calendar> </p:column>
+   </p:row>
+   
+    <p:row> 
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Gender:"></p:outputLabel></p:column>
+   <p:column ><p:inputText value="#{registerEmployee.employee.gender}" style="width:180px"></p:inputText> </p:column>
+  </p:row>
+   
+   <p:row>
+   <p:column ><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="SSN:"></p:outputLabel></p:column>
+   <p:column ><p:inputText value="#{registerEmployee.employee.ssn}" style="width:180px"></p:inputText> </p:column>
+   </p:row>
+  
+   
+ 
+</p:panelGrid>      		
+		
+		<p:panelGrid style="margin-top:0px;margin-left:40px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="4">Address</p:column>
+            
+        </p:row>
+        </f:facet>
+         <p:row> 
+  		 <p:column style="width:200px;"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street1:"></h:outputLabel></p:column>
+    	<p:column style="width:400px;"><p:inputText value="#{registerEmployee.address.street1}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+   
+   <p:row>
+  		 <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Street2:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.street2}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+    	
+    	 <p:row> 
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="City:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.city}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+   
+   <p:row>
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="State:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.state}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+    	 <p:row> 
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Zip:"></h:outputLabel></p:column>
+    	<p:column ><p:inputText value="#{registerEmployee.address.zip}" style="width:180px" ></p:inputText></p:column>
+    	</p:row>
+   
+ 		<p:row style="padding-top: 100px"><p:column colspan="2" style="padding-top: 105px"></p:column></p:row> 		
+ 	   	   
+         </p:panelGrid>
+		
+		<p:panelGrid style="margin-top:0px;margin-left:40px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="4">Credentials</p:column>
+            
+        </p:row>
+        </f:facet>
+         <p:row> 
+  		 <p:column style="width:200px;"><p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="User Name:"></p:outputLabel></p:column>
+    	<p:column style="width:400px;"><p:inputText value="#{registerEmployee.employee.username}" style="width:180px" ></p:inputText>	</p:column>
+    	</p:row>        
+        <p:row> 
+  		 <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd1" value="Password: *" /></p:column>
+  		 <p:column><p:password id="pwd1" value="#{registerEmployee.employee.password}" match="pwd2" label="Password 1" required="true" style="width:180px" /></p:column>
+  		</p:row>
+  		<p:row> 
+  		 <p:column ><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" for="pwd2" value="Confirm password: *" /></p:column>
+  		 <p:column ><p:password id="pwd2" value="#{registerEmployee.employee.password}" label="Password 2" required="true" style="width:180px"/></p:column>
+  		</p:row>  	
+  		<p:row> 
+  		 <p:column >
+  		 <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Role: *" for="dd" />
+  		 </p:column>
+  		 <p:column >
+        <p:autoComplete dropdown="true" id="dd" width="20px" value="#{registerEmployee.employee.role}" completeMethod="#{selectRole.completeText}" />
+ 		 </p:column>
+  		 </p:row>  		
+  		<p:row style="padding-top: 100px"><p:column colspan="2" style="padding-top: 147px"></p:column></p:row> 			
+         </p:panelGrid>
 	
-	</div></h:body>
+	<p:panelGrid style="margin-top:20px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="2">Contact Info</p:column>
+            
+        </p:row>
+        </f:facet>
+        <p:row> 
+         <p:column style="width:200px;"><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Phone:"></h:outputLabel></p:column>
+		 <p:column style="width:400px;"><h:inputText value="#{registerEmployee.address.phone}" style="width:180px" ></h:inputText></p:column>	
+		 </p:row> <p:row> 
+		  <p:column><h:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Email:"></h:outputLabel></p:column>
+       	   <p:column><h:inputText value="#{registerEmployee.address.email}" style="width:180px" ></h:inputText></p:column>
+  		</p:row>  		
+  		</p:panelGrid>
+	
+			<p:panelGrid style="margin-top:0px;margin-left:40px">
+		<f:facet name="header">
+        <p:row>
+            <p:column colspan="4">Branch</p:column>
+            
+        </p:row>
+        
+        </f:facet>
+        <p:row> 
+  		  <p:column style="width:200px;"> <p:outputLabel style="text-align:right;font-weight:bold;white-space: nowrap;" value="Branch:"></p:outputLabel></p:column>
+  		  <p:column style="width:400px;"><p:inputText value="New York" style="width:180px" ></p:inputText></p:column>
+  		</p:row>      
+		</p:panelGrid>
+ 				
+	</h:panelGrid>
+	</p:panel>
+	
+	
+<div align="center">   	 
+
+<p:commandButton rendered="#{page eq 3 or param.page eq 3}" value="Update" action="#{registerEmployee.updateemployee()}" update="messages"></p:commandButton>
+	</div>
+	</h:form>	
+	
+	
+	</div> </h:panelGroup>
+    			</p:layoutUnit>
+               
+			   </p:layout>
+          
+        </p:tab>
+        <p:tab title="Dash Board">
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText
+                    value="The story begins as Don Vito Corleone..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Customer">
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText value="Francis Ford Coppola's legendary..." />
+            </h:panelGrid>
+        </p:tab>
+      
+    </p:tabView>
+	</h:form>
+	</p:outputPanel>
 	</html>
