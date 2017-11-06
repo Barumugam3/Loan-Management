@@ -7,6 +7,7 @@
 		xmlns:p="http://primefaces.org/ui">
 	<h:head>
 	<script name="jquery/jquery.js" library="primefaces"></script>
+	 <script type="text/javascript" src="../loan_dev/js/jquery-3.2.1.min.js"></script>
 	<script>
 	 $(document).ready(function() {
 	  windowHeight = $(window).innerHeight();
@@ -27,7 +28,7 @@
   </style>
 	</h:head>
 	  <p:outputPanel class="globallayout">
-	<h:form id="mainform">     
+
 	<p:outputPanel id="outputPanel">
    	 <ui:include src="./template.xhtml" />
     </p:outputPanel>       
@@ -38,15 +39,12 @@
                <p:layout class="homelayout" >
               
     			<p:layoutUnit position="west" resizable="true" size="70" minSize="200" maxSize="300">       			
-  				
-  				<p:menu><p:menuitem  value="Employee" url="./employee.xhtml?page=2" >            		
+  					<h:form id="mainform">     
+  				<p:menu><p:menuitem  value="Employee" url="./employee.xhtml?page=2" >  
+  				<f:param name="page" value="2"></f:param>          		
        			</p:menuitem></p:menu>
        			  				
-  				<p:menu><p:menuitem  value="Role" actionListener="#{tabView.pageView}" ajax="true" update="panelContent">            		
-       			<f:param name="navpage" value="./Role.xhtml" /></p:menuitem></p:menu><p:menu>
-       			
-  				<p:menuitem>Menu Definition</p:menuitem></p:menu>
-  				<p:menu><p:menuitem>Branch</p:menuitem></p:menu>  				
+  				</h:form>			
   				</p:layoutUnit> 
     			 <p:layoutUnit   position="center"  resizable="true" size="80" minSize="150" maxSize="800"> 
     			<h:panelGroup id="panelContent">
@@ -57,7 +55,7 @@
 		<p:growl id="message1" showDetail="true" />
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
 		<f:facet name="footer">
-		<h:commandButton id="emp" value="Add" action="#{registerEmployee.navigatePage1(employee, 1)}"></h:commandButton> 
+		<h:commandButton id="emp" value="Add" action="#{registerEmployee.navigatePage1(employee, 0)}" update="message1"></h:commandButton> 
    		 </f:facet>
 		<p:dataTable var="employee" value="#{registerEmployee.fetchall()}"  >
 		
@@ -82,7 +80,8 @@
     </p:column>
     
       <p:column headerText="View">
-        <h:commandLink value="View" actionListener="#{registerEmployee.selectedemployee(employee)}" update="message1" >
+        <h:commandLink value="View" action="#{registerEmployee.selectedemployee(employee)}" update="message1" >
+        <f:param name="page" value="1"></f:param>
        </h:commandLink>
     </p:column>
     
@@ -94,7 +93,7 @@
 	</h:form>
    	 <!-- Browse Mode -->
    	   	
-	<h:form id="form1" rendered="#{param.page eq 1 or page eq 1}">
+	<h:form id="form1" rendered="#{param.page eq 1 or page eq 1}" >
 		<p:growl id="messages"></p:growl>
 		
 		<p:panel id="employeeid" header="Employee" style="margin-bottom:20px;border-style:none !important;text-align: center">
@@ -586,6 +585,5 @@
         </p:tab>
       
     </p:tabView>
-	</h:form>
 	</p:outputPanel>
 	</html>

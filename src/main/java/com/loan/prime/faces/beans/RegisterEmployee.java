@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -54,7 +55,11 @@ public class RegisterEmployee {
 	}
 	
     
-	public String navigatePage1(String page, String mode){	
+	public String navigatePage1(String page, String mode){
+		if(mode.equalsIgnoreCase("0")) {
+			employee = new Employee();
+			 address = new Address();
+		}
 		return pageMode.navigatePage1(page,mode);
 		
 	}
