@@ -1,17 +1,64 @@
-<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:p="http://primefaces.org/ui">
 	<h:head>
-		<script name="jquery/jquery.js" library="primefaces"></script>
-		<title>Role</title>
-	</h:head>	
-	 <h:body>   	 
+	<script name="jquery/jquery.js" library="primefaces"></script>
+	<script>
+	 $(document).ready(function() {
+	  windowHeight = $(window).innerHeight();
+	$('.globallayout').css('min-height', windowHeight);
+	$('.homelayout').css('min-height', windowHeight-200);
+	});
+	 $(document).ready(function() {
+		  windowWidth = $(window).innerWidth();
+		$('.globallayout').css('min-width', windowWidth);
+		$('.homelayout').css('min-width', windowWidth);
+		});
+	
+	</script>
+		<style>
+       .ui-panel-content, .ui-widget-content{
+           padding:1px;
+       }
+  </style>
+	</h:head>
+	  <p:outputPanel class="globallayout">
+	<h:form id="mainform">     
+	<p:outputPanel id="outputPanel">
+   	 <ui:include src="./template.xhtml" />
+    </p:outputPanel>       
+    <p:growl id="msgs" showDetail="true" />
+ 	 <p:tabView>
+ 	  <p:tab title="Admin" url="#" icon="fa fa-pie-chart">
+            
+               <p:layout class="homelayout" >
+              
+    			<p:layoutUnit position="west" resizable="true" size="70" minSize="200" maxSize="300">       			
+  				
+  				<p:menu><p:menuitem  value="Employee" url="./employee.xhtml?page=2" >            		
+       			</p:menuitem></p:menu>
+       			<p:menu><p:menuitem  value="Employee" url="./role.xhtml?page=2" >            		
+       			</p:menuitem></p:menu>
+       			  				
+       			  				
+  				<p:menu><p:menuitem  value="Role" actionListener="#{tabView.pageView}" ajax="true" update="panelContent">            		
+       			<f:param name="navpage" value="./Role.xhtml" /></p:menuitem></p:menu><p:menu>
+       			
+  				<p:menuitem>Menu Definition</p:menuitem></p:menu>
+  				<p:menu><p:menuitem>Branch</p:menuitem></p:menu>  				
+  				</p:layoutUnit> 
+    			 <p:layoutUnit   position="center"  resizable="true" size="80" minSize="150" maxSize="800"> 
+    			<h:panelGroup id="panelContent">
+	 
+	 
+	 	 
    	<div><p:panel id="rolePanel" header="Role" style="margin-bottom:20px;border-style:none !important;text-align: center">     
 	
 	 <h:panelGrid columns="3" style="border-style:none !important;text-align:center">
-	<h:form id="roleform" prependId="false">
 		<p:growl id="rolemessages"></p:growl>		  
 		<p:panelGrid >
 		    <f:facet name="header">
@@ -33,8 +80,32 @@
 			</p:column>
 			</p:row>			
 			</p:panelGrid>
-				<p:commandButton value="Add" actionListener="#{selectRole.register}" update="rolemessages"></p:commandButton>
-		</h:form></h:panelGrid>
+				<p:commandButton value="Add" ajax="true" actionListener="#{selectRole.register}" update="rolemessages"></p:commandButton>
+</h:panelGrid>
 	</p:panel>
-	</div></h:body>
-	</ui:fragment>
+	</div>
+	
+	</h:panelGroup>
+    			</p:layoutUnit>
+               
+			   </p:layout>
+          
+        </p:tab>
+        <p:tab title="Dash Board">
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText
+                    value="The story begins as Don Vito Corleone..." />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Customer">
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText value="Francis Ford Coppola's legendary..." />
+            </h:panelGrid>
+        </p:tab>
+      
+    </p:tabView>
+	</h:form>
+	</p:outputPanel>
+	</html>
+	
+	
